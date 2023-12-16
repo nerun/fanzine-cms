@@ -1,0 +1,77 @@
+.columns {
+    column-count: auto;
+    column-gap: 25px;
+    column-rule: 2px dotted;
+    column-width: 340px;
+    -moz-column-count: auto;
+    -webkit-column-count: auto;
+}
+
+.content, .navcolumn {
+    background-color:#e3dac9;
+    border-radius:10px 0 10px 0;
+    box-shadow: 4px 4px #27272a;
+    margin-bottom:10px;
+    margin-top:10px;
+    opacity: 0.9;
+    padding-bottom:20px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:20px;
+    text-align: justify;
+    ul, ol { text-align:left; }
+}
+
+.navcolumn {
+    a { color: #2467ab; text-decoration: none; };
+    a:hover { text-decoration: underline; };
+    background-color: #27272a;
+    box-shadow: 4px 4px #023c7f;
+    color: #fff;
+    margin-right: 15px;
+    opacity: 1.0;
+    text-align: left;
+}
+
+.index {
+    background-attachment: fixed;
+    background-image: url(/img/bg_lipsum.gif);
+    display: block;
+    font-family: garamond, serif, verdana;
+    font-size: 14pt;
+    margin-bottom: 0;
+    margin-left: 14%;
+    margin-right: 14%;
+    margin-top: 0;
+}
+
+.navbar-header, .navbar-footer {
+    a:hover { text-decoration: underline; };
+    background-color: #27272a;
+    border-top: 3px solid #023c7f;
+    color: #fff;
+    display:block;
+    font-family: sans-serif, tahoma, verdana;
+    font-size: 11pt;
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar-header {
+    a { color: #fff; text-decoration: none; };
+}
+
+.navbar-footer {
+    a { color: #2467ab; text-decoration: none; };
+    line-height: 1.4;
+}
+
+.silver, code {
+    font-size: 85%;
+}
+
+.silver {
+    background-color: silver;
+    padding: 5px;
+    white-space: pre-wrap;
+}
