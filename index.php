@@ -1,4 +1,8 @@
 <?php
+include('extensions/parsedown/Parsedown.php');
+include('extensions/parsedown-extra/ParsedownExtra.php');
+$Parsedown = new ParsedownExtra();
+
 echo file_get_contents("header.html");
 echo file_get_contents("sidebar.html");
 
@@ -10,9 +14,11 @@ if ($_GET) {
     $page_file = $main;
 }
 
-$body = file_get_contents($page_file);
+if ( $page_file != $main ) {
+    $body = file_get_contents($page_file);
+}
 
-if ( !empty($body) && $page_file != $main ) {
+if ( !empty($body) ) {
     $parameters = _getParams($body, $page_file);
     $article = $parameters[0];
     $author  = $parameters[1];
@@ -36,7 +42,12 @@ if ( !empty($body) && $page_file != $main ) {
     echo '<h1 style="line-height:5px; text-align:center;">'.$article.'</h1>';
     echo '<p style="font-size:75%; text-align:center;">&#128100; '.$author.'&emsp;&#128197; '.$date.'</p>';
     echo '<div id="columns" class="columns" style="column-count:'.$columns.';">';
-    echo $body;
+    
+    if ( mb_strtolower(substr($page_file, -2)) == 'md' ) {
+        echo $Parsedown->text($body);
+    } else {
+        echo $body;
+    }
 } elseif ( $page_file == $main ) {
     include($main);
 } else {
