@@ -39,8 +39,9 @@ if ( !empty($body) ) {
     }
 
     // Insert title, author and publication date in the page, using Unicode characters as icons.
-    echo '<h1 style="line-height:5px; text-align:center;">'.$article.'</h1>';
-    echo '<p style="font-size:75%; text-align:center;">&#128100; '.$author.'&emsp;&#128197; '.$date.'</p>';
+    echo '<h1 style="margin-bottom:0; text-align:center;">'.$article.'</h1>';
+    echo '<p style="margin-top:0; font-size:75%; text-align:center;">&#128100; '.$author.'&emsp;&#128197; '.$date.'</p>';
+    echo '<br />';
     echo '<div id="columns" class="columns" style="column-count:'.$columns.';">';
     
     if ( mb_strtolower(substr($page_file, -2)) == 'md' ) {

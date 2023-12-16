@@ -13,6 +13,11 @@ $ignored = array('.', '..');
 $dirs = array_diff( $dirs, $ignored );
 $dirs = array_values( $dirs );
 
+echo '<style>';
+echo 'a { color: #2467ab; text-decoration: none; };';
+echo 'a:hover { text-decoration: underline; };';
+echo '</style>';
+
 foreach ( $dirs as $key => $value ) {
     // Extract the first 600 characters from each file.
     $briefing = file_get_contents("articles/$value", false, null, 0, 600);
@@ -31,11 +36,11 @@ foreach ( $dirs as $key => $value ) {
     $image   = $parameters[5];
     
     if ( !empty($image) && mb_strtolower($image) != "none" ){
-        echo '<img src="/img/'.$image.'" width="432" height="216" style="float: right; padding-left: 15px">';
+        echo '<a href="articles/'.$value.'"><img src="/img/'.$image.'" width="432" height="216" style="float: right; padding-left: 15px"></a>';
     }
     
-    echo '<h1 style="line-height:5px; text-align:left;">'.$article.'</h1>';
-    echo '<p style="font-size:75%; text-align:left;">&#128100; '.$author.'&emsp;&#128197; '.$date.'</p>';
+    echo '<h1 style="margin-top:0; margin-bottom:0; text-align:left;"><a href="articles/'.$value.'">'.$article.'</a></h1>';
+    echo '<p style="margin-top:0; font-size:75%;">&#128100; '.$author.'&emsp;&#128197; '.$date.'</p>';
     
     if ( mb_strtolower(substr($value, -2)) == 'md' ) {
         echo $Parsedown->text($briefing . '... <a href="articles/' . $value . '">[read more]</a>');
