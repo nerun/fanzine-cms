@@ -23,14 +23,14 @@ Unixsheikh.com:
 
 My answer to this call is **Fanzine CMS**: a homemade content management system written entirely and only in **PHP** and **HTML5**, with a look and feel which resembles the default theme of a large CMS out there.
 
-**Fanzine CMS** has a basic frame: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily turn on/off at will with the help of PHP. In fact, with the purpose of reducing the need for knowledge of HTML language, and thanks to the power of PHP, a commented section was added where you can define the default parameters common to all content pages:
+**Fanzine CMS** has a basic frame: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily turn on/off at will. In fact, with the purpose of reducing the need for knowledge of HTML language, and thanks to the power of PHP, a commented section was added where you can define the default parameters common to all content pages:
 
 -   **article** — page title.
 -   **author** — author's name. Alternatively, you can set a default author name in `index.php` if you are the only author of your site.
--   **columns** — is the `style="column-count:..."`. You can let it in `auto`, it's good for most cases. Will be created as many columns of 340px as possible. A typical screen FHD 1920x1080 will have 3 columns.
+-   **columns** — is the `style="column-count:..."`. You can let it in `auto`, it's good for most cases. Will be created as many columns of 340px as possible. A typical screen FHD 1920&times;1080 will have 3 columns.
 -   **date** — if blank or missing PHP will get the [file modification time](https://www.php.net/manual/en/function.filemtime.php) and fill this field for you!
--   **email** — author's email is optional, but will be linked to author's name if this attribute is provided.
--   **image** — featured image is an optional field.
+-   **email** — author's email is optional but, if this parameter is provided, it will be linked to author's name automatically.
+-   **image** — featured image is an optional field. Default size is 640&times;360px inside article (defined in `index.php`) and 432&times;216px as thumbnail in the main page (`main.php`).
 
 This section should preferably be placed at the top of the file. Order does not matter:
 
