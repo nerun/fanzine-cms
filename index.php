@@ -25,7 +25,7 @@ if ( !empty($body) ) {
     $columns = $parameters[2];
     $date    = $parameters[3];
     $email   = $parameters[4];
-    $image   = $parameters[5];    
+    $image   = $parameters[5];
     
     // If email is not missing, link it to the author
     if ( !empty($email) ){
@@ -68,7 +68,8 @@ function _getParams($page, $page_name) {
     $art  = _getVar('arti(?:cle|go)', $page, 'article title missing');
     $aut  = _getVar('auth?or', $page, 'author name missing');
     $col  = _getVar('colu(?:mn|na)s?', $page, 'auto');
-    $dat  = _getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name))); // for date(), refer to https://www.php.net/manual/en/function.date.php
+    // for date(), refer to https://www.php.net/manual/en/function.date.php
+    $dat  = _getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name)));
     $mail = _getVar('e?mail', $page, null);
     $img  = _getVar('imagem?', $page, 'none');
     
@@ -82,9 +83,11 @@ function _getParams($page, $page_name) {
  *    <:variable_name:> + <variable value> + <line break>
  */
 function _getVar($var, $page, $missing) {
-    $result = preg_replace("/[.\S\s]*:$var:(.*)[\r\n][.\S\s]*/", '\1', $page);
+    $top_content = substr($page, 0, 250);
     
-    if ( $result == $page || trim($result) == null ) {
+    $result = preg_replace("/[.\S\s]*:$var:(.*)[\r\n][.\S\s]*/", '\1', $top_content);
+    
+    if ( $result == $top_content || trim($result) == null ) {
         $result = $missing;
     } else {
         $result = trim($result);

@@ -4,13 +4,13 @@
 :email:   danieldiasr@gmail.com
 :columns: 2
 -->
-# Needs we don\'t need
+# Needs we don't need
 
-We are a species that creates false needs: we create and consume things just because we think we need them and they are not always the best option. Needs that we don\'t need. That\'s why we pollute every space we occupy: from the Pacific Ocean and its islands of trash and plastic, to dark cities full of trash. It would be no different with the internet.
+We are a species that creates false needs: we create and consume things just because we think we need them and they are not always the best option. Needs that we don't need. That's why we pollute every space we occupy: from the Pacific Ocean and its islands of trash and plastic, to dark cities full of trash. It would be no different with the internet.
 
-Internet is polluted with poorly written, excessive, and often unnecessary JavaScript codes, polluted with heavy CMS platforms that, in theory, make life easier for users who could just focus on writing their content and less on structure. But in practice it\'s not like that: we waste hours, even days, trying to understand how these platforms work, and even more time adjusting extensions, settings, themes, appearances. And it doesn\'t always work out. Often all these facilities open all sorts of doors for intruders.
+Internet is polluted with poorly written, excessive, and often unnecessary JavaScript codes, polluted with heavy CMS platforms that, in theory, make life easier for users who could just focus on writing their content and less on structure. But in practice it's not like that: we waste hours, even days, trying to understand how these platforms work, and even more time adjusting extensions, settings, themes, appearances. And it doesn't always work out. Often all these facilities open all sorts of doors for intruders.
 
-It doesn\'t stop there. Non-necessary needs call for even more non-necessary needs\... All CMS platforms need a good database. But a website doesn\'t need that. In most cases, if you really needed a database to run a website, SQLite would be enough. HTML is fast and responsive by default and the web works without JavaScript.
+It doesn't stop there. Non-necessary needs call for even more non-necessary needs\... All CMS platforms need a good database. But a website doesn't need that. In most cases, if you really needed a database to run a website, SQLite would be enough. HTML is fast and responsive by default and the web works without JavaScript.
 
 ## Suggested readings
 
@@ -25,22 +25,22 @@ My answer to this call is **Fanzine CMS**: a homemade content management system 
 **Fanzine CMS** has a basic frame: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily turn on/off at will with the help of PHP. In fact, with the purpose of reducing the need for knowledge of HTML language, and thanks to the power of PHP, a commented section was added where you can define the default parameters common to all content pages:
 
 -   **article** — page title.
--   **author** — author\'s name. Alternatively, you can set a default author name in `index.php` if you are the only author of your site.
--   **columns** — is the `style="column-count:..."`. You can let it in `auto`, it\'s good for most cases. Will be created as many columns of 340px as possible. A typical screen FHD 1920x1080 will have 3 columns.
+-   **author** — author's name. Alternatively, you can set a default author name in `index.php` if you are the only author of your site.
+-   **columns** — is the `style="column-count:..."`. You can let it in `auto`, it's good for most cases. Will be created as many columns of 340px as possible. A typical screen FHD 1920x1080 will have 3 columns.
 -   **date** — if blank or missing PHP will get the [file modification time](https://www.php.net/manual/en/function.filemtime.php) and fill this field for you!
--   **email** — author\'s email is optional, but will be linked to author\'s name if this attribute is provided.
+-   **email** — author's email is optional, but will be linked to author's name if this attribute is provided.
 -   **image** — featured image is an optional field.
 
 This section should preferably be placed at the top of the file. Order does not matter:
 
 ```
 <!--
-:article: Lorem Ipsum
-:author:  Lorem Ipsum
-:columns: 1, 2, 3... auto
-:date:    Tue, 12 Dec 2023 16:33:11 -0300
-:email:   help@lipsum.com
-:image:   lorem-ipsum.jpg
+:article: Interesting title
+:author:  John Doe
+:columns: auto, 1, 2, 3... etc
+:date:    Tue, 12 Dec 2023
+:email:   author@email.com
+:image:   image-in-img-folder.jpg
 -->
 ```
 
@@ -104,29 +104,20 @@ And it will redirect to:
 https://website.com/articles/2023/12/page.html
 ```
 
-Don\'t forget to use root relative URLs: `/articles` not `articles`. Do the same for `img` folder or any other internal link.
+Don't forget to use root relative URLs: `/articles` not `articles`. Do the same for `img` folder or any other internal link.
 
-The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it\'s a lightweight website (no heavy scripts, no javscript, no database), it\'s still faster than a CMS. This method is also cost-effective: you don\'t have to rewrite vast lines of repetitive code. For example: `header.html` is the same for all pages. Tons of meta tags written just once!
+The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javscript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `header.html` is the same for all pages. Tons of meta tags written just once!
 
 # Licensing
 
 ![](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)
 
-```
-Fanzine CMS is a homemade content management system written entirely and
-only in PHP and HTML5.
+Fanzine CMS is a homemade content management system written entirely and only in PHP and HTML5.
 
 Copyright (C) 2023 Daniel Dias Rodrigues
 
-This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the
-Free Software Foundation, either version 3 of the License, or (at your
-option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-Public License for more details.
-```
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 Read the [LICENSE](LICENSE).
