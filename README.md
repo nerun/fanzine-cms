@@ -14,9 +14,10 @@ It doesn't stop there. Non-necessary needs call for even more non-necessary need
 
 ## Suggested readings
 
--   Unixsheikh.com. (2023-02-16) [SQLite the only database you will ever need in most cases](https://unixsheikh.com/articles/sqlite-the-only-database-you-will-ever-need-in-most-cases.html).
--   Unixsheikh.com. (2023-11-09) [The proper design process in web development](https://unixsheikh.com/articles/the-proper-design-process-in-web-development.html).
--   Unixsheikh.com. (2019-09-19) [Stop pushing JavaScript!](https://unixsheikh.com/articles/stop-pushing-javascript.html)
+Unixsheikh.com:
+  - [SQLite the only database you will ever need in most cases](https://unixsheikh.com/articles/sqlite-the-only-database-you-will-ever-need-in-most-cases.html).
+  - [The proper design process in web development](https://unixsheikh.com/articles/the-proper-design-process-in-web-development.html).
+  - [Stop pushing JavaScript!](https://unixsheikh.com/articles/stop-pushing-javascript.html)
 
 # What is the solution then?
 
@@ -43,6 +44,12 @@ This section should preferably be placed at the top of the file. Order does not 
 :image:   image-in-img-folder.jpg
 -->
 ```
+
+## Full markdown support
+
+Thanks to Emanuil Rusev's [Parsedown](https://github.com/erusev/parsedown)/[ParsedownExtra](https://github.com/erusev/parsedown-extra), **Fanzine CMS** has full support to [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/). This is important because "Markdown’s syntax is intended for one purpose: to be used as a format for writing for the web."[^1]
+
+[^1]: J. Gruber. _Daring Fireball: Markdown syntax documentation_. Overview: [Philosophy](https://daringfireball.net/projects/markdown/syntax#philosophy).
 
 ## No database required
 
