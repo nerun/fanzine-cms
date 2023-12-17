@@ -110,12 +110,23 @@ The entire page is rebuilded and reloaded. There are no frames like there were i
 
 # Licensing
 
-Fanzine CMS is a homemade content management system written entirely and only in PHP and HTML5.
+![](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)
+
+```
+Fanzine CMS is a homemade content management system written entirely and
+only in PHP and HTML5.
 
 Copyright (C) 2023 Daniel Dias Rodrigues
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+```
 
 Read the [LICENSE](LICENSE).
