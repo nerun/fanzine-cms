@@ -17,21 +17,24 @@ Options -Indexes -MultiViews +FollowSymLinks
     RedirectMatch 404 /\.git
 </IfModule>
 
-## Uncomment these rules if you want to have nice URLs
-RewriteEngine On
-RewriteRule ^$                                 index.php                   [L]
-RewriteRule (.*\.(html|md|txt|adoc))$          index.php?id=$1             [QSA,L]
-RewriteCond %{REQUEST_FILENAME}                !-f
-RewriteCond %{REQUEST_FILENAME}                !-d
-RewriteRule (.*)                               index.php?id=$1             [QSA,L]
-RewriteRule ^index\.php$                       -                           [L]
+<IfModule mod_rewrite.c>
+    ## May be required to access sub directories.
+    ## Not all installations will require the following line.  If you do,
+    ## change "/website" to the path to your website directory relative
+    ## to your document root.
+    #RewriteBase /website
 
-## Not all installations will require the following line.  If you do,
-## change "/website" to the path to your website directory relative
-## to your document root.
-#RewriteBase /website
+    ## Uncomment these rules if you want to have nice URLs
+    RewriteEngine On
+    RewriteRule ^$                                 index.php                   [L]
+    RewriteRule (.*\.(html|md|txt|adoc))$          index.php?id=$1             [QSA,L]
+    RewriteCond %{REQUEST_FILENAME}                !-f
+    RewriteCond %{REQUEST_FILENAME}                !-d
+    RewriteRule (.*)                               index.php?id=$1             [QSA,L]
+    RewriteRule ^index\.php$                       -                           [L]
 
-## HTTPS
-#RewriteEngine On
-#RewriteCond %{HTTPS} !on
-#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+    ## HTTPS
+    #RewriteEngine On
+    #RewriteCond %{HTTPS} !on
+    #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</IfModule>
