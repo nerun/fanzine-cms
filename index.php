@@ -68,11 +68,11 @@ function _getParams($page, $page_name) {
     // Alternatively, you can change the default missing string to set a
     // default author, email etc.
     $art  = _getVar('arti(?:cle|go)', $page, 'article title missing');
-    $aut  = _getVar('auth?or', $page, 'Daniel Dias Rodrigues');
-    $col  = _getVar('colu(?:mn|na)s?', $page, '2');
+    $aut  = _getVar('auth?or', $page, 'author name missing');
+    $col  = _getVar('colu(?:mn|na)s?', $page, 'auto');
     // for date(), refer to https://www.php.net/manual/en/function.date.php
     $dat  = _getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name)));
-    $mail = _getVar('e?mail', $page, 'gurpzine@gurpzine.com.br');
+    $mail = _getVar('e?mail', $page, null);
     $img  = _getVar('imagem?', $page, 'none');
     
     return array( $art, $aut, $col, $dat, $mail, $img );

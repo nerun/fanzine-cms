@@ -19,7 +19,7 @@
     padding-right:20px;
     padding-top:20px;
     text-align: justify;
-    ul, ol, { text-align:left; }
+    ul, ol { text-align:left; }
 }
 
 .navcolumn {
