@@ -19,7 +19,7 @@
     padding-right:20px;
     padding-top:20px;
     text-align: justify;
-    ul, ol { text-align:left; }
+    ul, ol, { text-align:left; }
 }
 
 .navcolumn {
@@ -43,6 +43,19 @@
     margin-left: 14%;
     margin-right: 14%;
     margin-top: 0;
+}
+
+.abstract {
+    a:active { color: red; text-decoration: none; };
+    a:link { text-decoration: none; };
+    a:visited { text-decoration: none; }
+    a:hover {
+        text-decoration: none;
+        background-color: purple;
+        color: white;
+        border-radius: 10px
+        };
+    a { color: #2467ab; };
 }
 
 .navbar-header, .navbar-footer {
@@ -75,3 +88,20 @@
     padding: 5px;
     white-space: pre-wrap;
 }
+
+.left, .right {
+    margin-bottom:10px;
+    width: 120px;
+}
+
+.left {
+    float:left;
+    margin-right:15px;
+}
+
+.right {
+    float:right;
+    margin-left:15px;
+}
+
+h1, h2, h3, h4, h5, h6 { text-align: left; }
