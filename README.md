@@ -49,6 +49,8 @@ This section should preferably be placed at the top of the file. Order does not 
 
 Thanks to Emanuil Rusev's [Parsedown](https://github.com/erusev/parsedown)/[ParsedownExtra](https://github.com/erusev/parsedown-extra), **Fanzine CMS** has full support to [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/). This is important because "Markdown’s syntax is intended for one purpose: to be used as a format for writing for the web."[^1]
 
+In fact, this README is written in markdown.
+
 [^1]: J. Gruber. _Daring Fireball: Markdown syntax documentation_. Overview: [Philosophy](https://daringfireball.net/projects/markdown/syntax#philosophy).
 
 ## No database required
