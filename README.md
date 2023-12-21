@@ -114,17 +114,3 @@ https://website.com/articles/2023/12/page.html
 Don't forget to use root relative URLs: `/articles` not `articles`. Do the same for `img` folder or any other internal link.
 
 The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javscript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `header.html` is the same for all pages. Tons of meta tags written just once!
-
-# Licensing
-
-![](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)
-
-Fanzine CMS is a homemade content management system written entirely and only in PHP and HTML5.
-
-Copyright (C) 2023 Daniel Dias Rodrigues
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-Read the [LICENSE](LICENSE).
