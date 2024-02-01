@@ -67,7 +67,7 @@ However, if you think you need some help, this is a great start, I learned a lot
 
 All PHP code run from inside `index.php`: a short file with a few lines of code, easy to understand if you know the basics of PHP, and well commented.
 
-A complementary file, called `main.php` is responsible for creating the main page with \"abstracts\" of all articles on the site. It lists the contents of the `articles` folder and creates the excerpt, the reader just needs to click on \"read more\".
+A complementary file, called `main.php` is responsible for creating the main page with "abstracts" of all articles on the site. It lists the contents of the `articles` folder and creates the excerpt, the reader just needs to click on "read more".
 
 What `index.php` do is to join three html pages into one, in this order:
 
@@ -81,7 +81,7 @@ What `index.php` do is to join three html pages into one, in this order:
 
 ## Passing arguments
 
-In the \"render a main page\" step, we can pass some arguments to PHP (`index.php`) via URL, using:
+In the "render a main page" step, we can pass some arguments to PHP (`index.php`) via URL, using:
 
 ```
 <a href="index.php?id=articles/page.html">
@@ -98,7 +98,7 @@ You can pass subfolders:
 And it will redirect to:
 
 ```
-https://website.com/index.php?id=articles/2023/12/page.html
+https://site.com/index.php?id=articles/2023/12/page.html
 ```
 
 If you use the `.htaccess` we provided, the rewrite rules will allow you to omit the **`index.php?id=`** portion:
@@ -110,7 +110,7 @@ If you use the `.htaccess` we provided, the rewrite rules will allow you to omit
 And it will redirect to:
 
 ```
-https://website.com/articles/2023/12/page.html
+https://site.com/articles/2023/12/page.html
 ```
 
 Don't forget to use root relative URLs: `/articles` not `articles`. Do the same for `img` folder or any other internal link.
