@@ -40,7 +40,7 @@ if ( $page_file != $main ) {
 
         // Insert title, author and publication date in the page, using Unicode characters as icons.
         echo '<h1 style="margin-bottom:0; text-align:center;">'.$article.'</h1>';
-        echo '<p style="margin-top:0; font-size:75%; text-align:center;">&#128100; '
+        echo '<p style="margin-top:0; font-size:80%; text-align:center;">&#128100; '
              .$author.'&emsp;&#128197; '.$date.'</p>';
         echo '<br />';
         echo '<div id="columns" class="columns" style="column-count:'.$columns.';">';
