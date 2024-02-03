@@ -19,10 +19,12 @@ foreach ( $dirs as $key => $value ) {
     // Open file as array
     $abstract = file("articles/$value");
     // Extract the first 11 lines from each file.
-    $abstract = implode(array_slice($abstract, 0, 11));
+    $abstract = implode(array_slice($abstract, 0, 15));
     // No images beyond featured ones, and no headings in the abstract.
-    $abstract = preg_replace('/(.*)<img src=\"[^"]*\".*\/>(.*)/s', '\1\2', $abstract);
-    $abstract = preg_replace('/(.*)<h.*>.*<\/h.>(.*)/s', '\1\2', $abstract);
+    $patterns = array('/<img src=\"[^"]*\".*\/>/',
+                      '/<fig[caption|ure]+>.*<\/fig[caption|ure]+>/',
+                      '/<h[1-6].*>.*<\/h[1-6]>/');
+    $abstract = preg_replace($patterns, '', $abstract);
     
     /**
     * Getting the parameters is only possible if the parameters section
@@ -37,17 +39,17 @@ foreach ( $dirs as $key => $value ) {
     $email   = $parameters[4];
     $image   = $parameters[5];
     
-    if ( !empty($image) && mb_strtolower($image) != "none" ){
-        echo '<a href="articles/'.$value.'" target="_top"><img src="/img/'.$image.'"
-             width="340" height="170" style="float:right; margin-left:15px;
-             margin-bottom:15px"></a>';
-    }
-    
     echo '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">
          <a href="articles/'.$value.'" target="_top">'.$article.'</a></h1>';
     
     echo '<p style="margin-top:0; font-size:75%;">&#128100; '.$author.
          '&emsp;&#128197; '.$date.'</p>';
+
+    if ( !empty($image) && mb_strtolower($image) != "none" ){
+        echo '<a href="articles/'.$value.'" target="_top"><img src="/img/'.$image.'"
+             width="340" height="170" style="float:right; margin-left:15px;
+             margin-bottom:15px"></a>';
+    }
     
     $readmore = '<a href="articles/'.$value.'" target="_top">
             <img src="/img/readmore.png" height="24" style="vertical-align:top;" />

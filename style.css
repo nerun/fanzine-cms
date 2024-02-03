@@ -90,7 +90,6 @@
 }
 
 .left, .right {
-    margin-bottom:10px;
     width: 120px;
 }
 
@@ -104,4 +103,9 @@
     margin-left:15px;
 }
 
+figure {
+    margin:0;
+}
+
 h1, h2, h3, h4, h5, h6 { text-align: left; }
+
