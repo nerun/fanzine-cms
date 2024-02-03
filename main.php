@@ -18,8 +18,15 @@ echo '<div class="abstract">';
 foreach ( $dirs as $key => $value ) {
     // Open file as array
     $abstract = file("articles/$value");
-    // Extract the first 11 lines from each file.
-    $abstract = implode(array_slice($abstract, 0, 15));
+    
+    // Extract the first lines from each file.
+    $abstract = implode(array_slice($abstract, 0, 14));
+    
+    // If Markdown, convert to HTML
+    if ( mb_strtolower(substr($value, -2)) == 'md' ) {
+        $abstract = $Parsedown->text($abstract);
+    }
+    
     // No images beyond featured ones, and no headings in the abstract.
     $patterns = array('/<img src=\"[^"]*\".*\/>/',
                       '/<fig[caption|ure]+>.*<\/fig[caption|ure]+>/',
@@ -41,8 +48,8 @@ foreach ( $dirs as $key => $value ) {
     
     echo '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">
          <a href="articles/'.$value.'" target="_top">'.$article.'</a></h1>';
-    
-    echo '<p style="margin-top:0; font-size:75%;">&#128100; '.$author.
+
+    echo '<p style="margin-top:0; font-size:80%;">&#128100; '.$author.
          '&emsp;&#128197; '.$date.'</p>';
 
     if ( !empty($image) && mb_strtolower($image) != "none" ){
@@ -55,11 +62,7 @@ foreach ( $dirs as $key => $value ) {
             <img src="/img/readmore.png" height="24" style="vertical-align:top;" />
             </a>';
     
-    if ( mb_strtolower(substr($value, -2)) == 'md' ) {
-        echo $Parsedown->text($abstract);
-    } else {
-        echo $abstract;
-    }
+    echo $abstract;
     
     echo $readmore;
     
