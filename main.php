@@ -49,8 +49,8 @@ foreach ( $dirs as $key => $value ) {
     echo '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">
          <a href="articles/'.$value.'" target="_top">'.$article.'</a></h1>';
 
-    echo '<p style="margin-top:0; font-size:80%;">&#128100; '.$author.
-         '&emsp;&#128197; '.$date.'</p>';
+    echo '<p style="margin-top:0; font-size:80%;">&#128197; '.$date.
+         '&emsp;&#128100; '.$author.'</p>';
 
     if ( !empty($image) && mb_strtolower($image) != "none" ){
         echo '<a href="articles/'.$value.'" target="_top"><img src="/img/'.$image.'"
