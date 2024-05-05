@@ -115,4 +115,4 @@ https://site.com/articles/2023/12/page.html
 
 Don't forget to use root relative URLs: `/articles` not `articles`. Do the same for `img` folder or any other internal link.
 
-The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javscript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `header.html` is the same for all pages. Tons of meta tags written just once!
+The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javascript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `header.html` is the same for all pages. Tons of meta tags written just once!
