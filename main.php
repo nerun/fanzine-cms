@@ -17,10 +17,7 @@ echo '<div class="abstract">';
 
 foreach ( $dirs as $key => $value ) {
     // Open file as array
-    $abstract = file("articles/$value");
-    
-    // Extract the first lines from each file.
-    $abstract = implode(array_slice($abstract, 0, 14));
+    $abstract = file("articles/$value", FILE_SKIP_EMPTY_LINES);
     
     // If Markdown, convert to HTML
     if ( mb_strtolower(substr($value, -2)) == 'md' ) {
@@ -32,6 +29,9 @@ foreach ( $dirs as $key => $value ) {
                       '/<fig[caption|ure]+>.*<\/fig[caption|ure]+>/',
                       '/<h[1-6].*>.*<\/h[1-6]>/');
     $abstract = preg_replace($patterns, '', $abstract);
+
+    // Extract the first lines from each file.
+    $abstract = implode(array_slice($abstract, 0, 14));
     
     /**
     * Getting the parameters is only possible if the parameters section
