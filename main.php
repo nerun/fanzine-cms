@@ -21,7 +21,13 @@ foreach ( $dirs as $key => $value ) {
 
     // If Markdown, convert to HTML
     if ( mb_strtolower(substr($value, -2)) == 'md' ) {
-        $abstract = $Parsedown->text($abstract);
+        foreach ( $abstract as $k => &$v ) {
+            // But do not convert parameters!
+            // The parameters are located in the first 8 lines: Keys [0] to [7]
+            if ( $k > 7 ) {
+                 $v = $Parsedown->text($v);
+            }
+        }
     }
 
     // No images beyond featured ones, and no headings in the abstract.
