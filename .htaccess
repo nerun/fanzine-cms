@@ -25,6 +25,9 @@ Options -Indexes -MultiViews +FollowSymLinks
     #RewriteBase /website
 
     ## Uncomment these rules if you want to have nice URLs
+    ## Server must have mod_rewrite enabled:
+    ## sudo a2enmod rewrite
+    ## sudo service apache2 restart
     RewriteEngine On
     RewriteRule ^$                                 index.php                   [L]
     RewriteRule (.*\.(html|md|txt|adoc))$          index.php?id=$1             [QSA,L]
