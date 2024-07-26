@@ -4,7 +4,7 @@
 :columns:   2
 :date:      Thur, 27 jul 2023
 :email:     danieldiasr@gmail.com
-:image:     markdown-mark.png
+:image:     markdown-mark.webp
 -->
 
 ## A format to lasts through time

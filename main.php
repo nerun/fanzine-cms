@@ -18,12 +18,12 @@ echo '<div class="abstract">';
 foreach ( $dirs as $key => $value ) {
     // Open file as array
     $abstract = file("articles/$value", FILE_SKIP_EMPTY_LINES);
-    
+
     // If Markdown, convert to HTML
     if ( mb_strtolower(substr($value, -2)) == 'md' ) {
         $abstract = $Parsedown->text($abstract);
     }
-    
+
     // No images beyond featured ones, and no headings in the abstract.
     $patterns = array('/<img src=\"[^"]*\".*\/>/',
                       '/<fig[caption|ure]+>.*<\/fig[caption|ure]+>/',
@@ -59,7 +59,7 @@ foreach ( $dirs as $key => $value ) {
     }
     
     $readmore = '<a href="articles/'.$value.'" target="_top">
-            <img src="/img/readmore.png" height="24" style="vertical-align:top;" />
+            <img src="/img/readmore.webp" height="24" style="vertical-align:top;" />
             </a>';
     
     echo $abstract;
