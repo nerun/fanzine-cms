@@ -7,8 +7,13 @@
     -webkit-column-count: auto;
 }
 
+.main-container {
+    display: flex;
+    align-items: flex-start;
+}
+
 .content, .navcolumn {
-    background-color:#e3dac9;
+    background-color:#eaeced;
     border-radius:20px 0 20px 0;
     box-shadow: 4px 4px #27272a;
     margin-bottom:10px;
@@ -19,7 +24,7 @@
     padding-right:20px;
     padding-top:20px;
     text-align: justify;
-    ul, ol { text-align:left; }
+    ul, ol, { text-align:left; }
 }
 
 .navcolumn {
@@ -33,15 +38,24 @@
     text-align: left;
 }
 
+.navcolumn {
+    width: 250px;   /* Set a fixed or relative size */
+    flex-shrink: 0; /* Prevents menu from shrinking */
+}
+
+.content {
+    flex-grow: 1;   /* Takes up the remaining available space */
+}
+
 .index {
     background-attachment: fixed;
-    background-image: url(/img/bg_lipsum.gif);
+    background-image: url('/img/bg_lipsum.gif');
     display: block;
-    font-family: garamond, serif, verdana;
+    font-family: liberation serif, times new roman, garamond, serif, verdana;
     font-size: 14pt;
     margin-bottom: 0;
-    margin-left: 14%;
-    margin-right: 14%;
+    margin-left: 17%;
+    margin-right: 17%;
     margin-top: 0;
 }
 
@@ -108,4 +122,112 @@ figure {
 }
 
 h1, h2, h3, h4, h5, h6 { text-align: left; }
+
+li:not(:last-child) {
+    margin-bottom: 7px;
+}
+
+@media (max-width: 1440px) {
+    .index {
+        margin-left: 14%;
+        margin-right: 14%;
+    }
+    .navcolumn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .index {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 1050px) {
+    .responsive-img {
+        width: 80%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .index {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .responsive-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .index {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Dropdown menu (hamburger) and content, hidden above 1050px */
+@media screen and (max-width: 1050px) {
+    /* Hide the sidebar on smaller screens */
+    #navcolumn {
+        display: none;
+    }
+
+    /* Displays the dropdown menu in the right corner */
+    #dropdown-menu {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #27272a;
+        border: 1px solid #023c7f;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    /* Hides menu content by default */
+    #dropdown-menu-content {
+        display: none;
+        position: absolute;
+        top: 35px;
+        right: 0;
+        background-color: #27272a;
+        border: 1px solid #023c7f;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+
+    /* Menu Item Style */
+    #dropdown-menu-content a {
+        color: #2467ab;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+    }
+
+    #dropdown-menu-content a:hover {
+        background-color: #023c7f;
+    }
+
+    /* Show menu content when 'active' class is applied to #dropdown-menu */
+    #dropdown-menu.active + #dropdown-menu-content {
+        display: block;
+    }
+}
+
+/* Hides hamburger menu above 1050px */
+@media screen and (min-width: 1051px) {
+    #dropdown-menu {
+        display: none;
+    }
+    #dropdown-menu-content {
+        display: none;
+    }
+}
+
 

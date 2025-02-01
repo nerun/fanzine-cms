@@ -1,100 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>A Familiar Magazine</title>
+        <meta name="author" content="Daniel Dias Rodrigues">
+        <meta name="copyright" content="© <?php echo date('Y');?> Daniel Dias Rodrigues" />
+        <meta name="description" content="Basic blog frame created with PHP and HTML5." />
+        <meta name="keywords" content="PHP, HTML5, Blog, Theme, Site" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+        <meta name="robots" content="index,follow">
+        <meta name="rating" content="general" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"/>
+        <base target="_blank" rel="noreferrer noopener nofollow">
+    </head>
+    <body class="index">
+        <header>
+            <a href="/index.php" target="_top"><img src="/img/banner.webp" width="100%"></a>
+            <nav id="header">
+                <div class="navbar-header">
+                    <a href="/index.php" target="_top">HOME</a>&emsp;
+                    <a href="/legal.html" target="_top">LICENSE</a>&emsp;
+                    <a href="/README.md" target="_top">README</a>&emsp;
+                    <a href="https://github.com/nerun/fanzine-cms" target="_blank">SOURCE</a>&emsp;
+                    <!-- Dropdown for smaller screens -->
+                    <div id="dropdown-menu">&#9776;</div>
+                    <div id="dropdown-menu-content">
+                        <a href="/articles/2_lorem_ipsum.html" target="_top">Lorem ipsum</a>
+                        <!-- Add other menu items as needed -->
+                    </div>
+                </div>
+            </nav>
+        </header>
 <?php
-include('extensions/parsedown/Parsedown.php');
-include('extensions/parsedown-extra/ParsedownExtra.php');
-$Parsedown = new ParsedownExtra();
+            include('extensions/parsedown/Parsedown.php');
+            include('extensions/parsedown-extra/ParsedownExtra.php');
+            $Parsedown = new ParsedownExtra();
 
-echo file_get_contents("header.html");
-echo file_get_contents("sidebar.html");
+            // Extracts all parameters from a page
+            function _getParams($page, $page_name) {
+                $getVar = function($var, $page, $missing) {
+                    return preg_match("/:$var:(.*)/", substr($page, 0, 250), $matches) ? trim($matches[1]) : $missing;
+                };
 
-$main = 'main.php';
+                return [
+                    $getVar('arti(?:cle|go)', $page, 'article title missing'),
+                    $getVar('auth?or', $page, 'Nerun'),
+                    $getVar('colu(?:mn|na)s?', $page, '2'),
+                    $getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name))),
+                    $getVar('e?mail', $page, 'gurpzine@gurpzine.com.br'),
+                    $getVar('imagem?', $page, 'none')
+                ];
+            }
 
-if ($_GET) {
-    $page_file = $_GET['id'];
-} else {
-    $page_file = $main;
-}
+            function tab($times){
+                return str_repeat("\t",$times);
+            }
 
-if ( $page_file != $main ) {
-    $body = file_get_contents($page_file);
-    
-    if ( !empty($body) ) {
-        $parameters = _getParams($body, $page_file);
-        $article = $parameters[0];
-        $author  = $parameters[1];
-        $columns = $parameters[2];
-        $date    = $parameters[3];
-        $email   = $parameters[4];
-        $image   = $parameters[5];
-        
-        // If email is not missing, link it to the author
-        if ( !empty($email) ){
-            $author = '<a href="mailto:'.$email.'">'.$author.'</a>';
-        }
-
-        // If featured image is not missing and it is not set to 'none', insert it
-        if ( !empty($image) && mb_strtolower($image) != "none" ){
-            echo '<img src="/img/'.$image.'" width="640" height="360"
-                 style="margin: 1px auto 1px; display: block;">';
-            echo '<hr width="75%">';
-        }
-
-        // Insert title, author and publication date in the page, using Unicode characters as icons.
-        echo '<h1 style="margin-bottom:0; text-align:center;">'.$article.'</h1>';
-        echo '<p style="margin-top:0; font-size:80%; text-align:center;">&#128100; '
-             .$author.'&emsp;&#128197; '.$date.'</p>';
-        echo '<br />';
-        echo '<div id="columns" class="columns" style="column-count:'.$columns.';">';
-        
-        if ( mb_strtolower(substr($page_file, -2)) == 'md' ) {
-            echo $Parsedown->text($body);
-        } else {
-            echo $body;
-        }
-    } else {
-        include('404.php');
-    }
-} else {
-    include($main);
-}
-
-$footer = file_get_contents("footer.html");
-echo preg_replace('/YEAR/s', date("Y"), $footer);
-
-/**
- * Returns all parameters extracted from a html page.
- */
-function _getParams($page, $page_name) {
-    // pattern, page file content, alternative if missing
-    // Alternatively, you can change the default missing string to set a
-    // default author, email etc.
-    $art  = _getVar('arti(?:cle|go)', $page, 'article title missing');
-    $aut  = _getVar('auth?or', $page, 'author name missing');
-    $col  = _getVar('colu(?:mn|na)s?', $page, 'auto');
-    // for date(), refer to https://www.php.net/manual/en/function.date.php
-    $dat  = _getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name)));
-    $mail = _getVar('e?mail', $page, null);
-    $img  = _getVar('imagem?', $page, 'none');
-    
-    return array( $art, $aut, $col, $dat, $mail, $img );
-}
-
-/**
- * Returns a variable extracted from a page (.html or any other
- * extension). One variable per line.
- * Variables format:
- *    <:variable_name:> + <variable value> + <line break>
- */
-function _getVar($var, $page, $missing) {
-    $top_content = substr($page, 0, 250);
-    
-    $result = preg_replace("/[.\S\s]*:$var:(.*)[\r\n][.\S\s]*/", '\1', $top_content);
-    
-    if ( $result == $top_content || trim($result) == null ) {
-        $result = $missing;
-    } else {
-        $result = trim($result);
-    }
-    
-    return $result;
-}
+            if ($_GET['id']) {
+                $page_file = $_GET['id'];
+                echo tab(2) . '<div id="content" class="content">' . "\n";
+                include('article.php');
+                echo tab(2) . "</div>\n";
+            } else {
+                $page_file = 'main.php';
+                echo tab(2) . '<div class="main-container">' . "\n";
+                echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
+                echo tab(4) . '<h3 style="margin-top:0; margin-bottom:0;">Tags</h3>' . "\n";
+                echo tab(4) . '<p><a href="/articles/2_lorem_ipsum.html" target="_top">Lorem ipsum</a></p>' . "\n";
+                echo tab(3) . "</div>\n";
+                echo tab(3) . '<div id="content" class="content">' . "\n";
+                include($page_file);
+                echo tab(3) . "</div>\n";
+                echo tab(2) . "</div>\n";
+            }
 ?>
+        <footer>
+            <div class="navbar-footer">
+                Fanzine CMS © 2023-<?php echo date('Y');?> <a href="mailto:gurpzine@gurpzine.com.br">Daniel "Nerun" Rodrigues</a>.
+                Some rights reserved.<br />
+                <a href="https://github.com/nerun/fanzine-cms">Fanzine CMS</a> powered by <a href="https://www.php.net">PHP</a>
+                and <a href="https://html.spec.whatwg.org/multipage">HTML5</a>.
+            </div>
+        </footer>
+        <script>
+            document.getElementById('dropdown-menu').addEventListener('click', function() {
+                this.classList.toggle('active');  // Toggles the 'active' class on the menu icon
+                const menuContent = document.getElementById('dropdown-menu-content');
+                menuContent.classList.toggle('active');  // Toggles the 'active' class on menu content
+            });
+        </script>
+    </body>
+</html>

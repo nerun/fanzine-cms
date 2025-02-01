@@ -1,49 +1,34 @@
 <?php
-/* By default, the sort order is alphabetical and descending, so the
- * oldest article appears at the bottom of the main page. Sorting is
- * done using file names, not titles. If you want to sort by date, add
- * numbers to the beginning of the file names. Logically, the highest
- * number will be the most recently published file, and will always
- * appear at the top.
- *     1_manifest.md
- *     2_lorem_ipsum.html
- */
+$articlesPerPage = 5;
 $dirs = scandir('articles', SCANDIR_SORT_DESCENDING);
 $ignored = array('.', '..');
-$dirs = array_diff( $dirs, $ignored );
-$dirs = array_values( $dirs );
+$dirs = array_values(array_diff($dirs, $ignored));
 
-echo '<div class="abstract">';
+$totalArticles = count($dirs);
+$totalPages = ceil($totalArticles / $articlesPerPage);
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max(1, min($page, $totalPages));
+$start = ($page - 1) * $articlesPerPage;
+$dirs = array_slice($dirs, $start, $articlesPerPage);
 
-foreach ( $dirs as $key => $value ) {
-    // Open file as array
+echo tab(4) . '<div class="abstract">' . "\n";
+
+foreach ($dirs as $key => $value) {
     $abstract = file("articles/$value", FILE_SKIP_EMPTY_LINES);
-
-    // If Markdown, convert to HTML
-    if ( mb_strtolower(substr($value, -2)) == 'md' ) {
-        foreach ( $abstract as $k => &$v ) {
-            // But do not convert parameters!
-            // The parameters are located in the first 8 lines: Keys [0] to [7]
-            if ( $k > 7 ) {
-                 $v = $Parsedown->text($v);
+    if (mb_strtolower(substr($value, -2)) == 'md') {
+        foreach ($abstract as $k => &$v) {
+            if ($k > 7) {
+                $v = $Parsedown->text($v);
             }
         }
     }
 
-    // No images beyond featured ones, and no headings in the abstract.
     $patterns = array('/<img src=\"[^"]*\".*\/>/',
                       '/<fig[caption|ure]+>.*<\/fig[caption|ure]+>/',
                       '/<h[1-6].*>.*<\/h[1-6]>/');
     $abstract = preg_replace($patterns, '', $abstract);
-
-    // Extract the first lines from each file.
     $abstract = implode(array_slice($abstract, 0, 14));
-    
-    /**
-    * Getting the parameters is only possible if the parameters section
-    * is at the top of the file. So make sure you always position it at
-    * the top.
-    */    
+
     $parameters = _getParams($abstract, "articles/$value");
     $article = $parameters[0];
     $author  = $parameters[1];
@@ -51,31 +36,52 @@ foreach ( $dirs as $key => $value ) {
     $date    = $parameters[3];
     $email   = $parameters[4];
     $image   = $parameters[5];
-    
-    echo '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">
-         <a href="articles/'.$value.'" target="_top">'.$article.'</a></h1>';
 
-    echo '<p style="margin-top:0; font-size:80%;">&#128197; '.$date.
-         '&emsp;&#128100; '.$author.'</p>';
+    $abstract = preg_replace('/<!--.*?-->/s', '', $abstract);
 
-    if ( !empty($image) && mb_strtolower($image) != "none" ){
-        echo '<a href="articles/'.$value.'" target="_top"><img src="/img/'.$image.'"
-             width="340" height="170" style="float:right; margin-left:15px;
-             margin-bottom:15px"></a>';
+    echo tab(5) . '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">' . "\n";
+    echo tab(6) . '<a href="articles/' . $value . '" target="_top">' . $article . '</a>' . "\n";
+    echo tab(5) . "</h1>\n";
+
+    echo tab(5) . '<p style="margin-top:0; font-size:80%;">' . "\n";
+    echo tab(6) . '&#128197; ' . $date . '&emsp;&#128100; ' . $author . "\n";
+    echo tab(5) . "</p>\n";
+
+    if (!empty($image) && mb_strtolower($image) != "none") {
+        echo tab(5) . '<a href="/articles/' . $value . '" target="_top">' . "\n";
+        echo tab(6) . '<img src="/img/' . $image .
+            '" width="340" height="170" style="float:right; margin-left:15px; margin-bottom:15px"' .
+            ' class="responsive-img">' . "\n";
+        echo tab(5) . "</a>\n";
     }
     
-    $readmore = '<a href="articles/'.$value.'" target="_top">
-            <img src="/img/readmore.webp" height="24" style="vertical-align:top;" />
-            </a>';
+    $abstract = preg_replace('/^/m', str_repeat("\t", 5), $abstract);
+    $abstract = preg_replace('/^\s*[\r\n]+/m', '', $abstract);
     
     echo $abstract;
     
-    echo $readmore;
+    echo tab(5) . '<a href="articles/' . $value . '" target="_top">' . "\n";
+    echo tab(6) . '<img src="/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
+    echo tab(5) . "</a>\n";
     
-    if ( $dirs[$key] != end($dirs) ) {
-        echo '<hr>';
+    if ($dirs[$key] != end($dirs)) {
+        echo "\n" . tab(5) . "<hr>\n\n";
     }
 }
 
-echo '</div>';
+echo tab(4) . "</div>\n";
+
+// Browsing
+echo tab(4) . '<div style="text-align: center; margin-top: 20px;">' . "\n";
+
+if ($page > 1) {
+    echo tab(5) . '<a href="?page=' . ($page - 1) . '" target="_top">⏪ Recent Articles</a> ' . "\n";
+}
+
+if ($page < $totalPages) {
+    echo tab(5) . '<a href="?page=' . ($page + 1) . '" target="_top">Previous Articles ⏩</a>' . "\n";
+}
+
+echo tab(4) . "</div>";
 ?>
+
