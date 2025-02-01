@@ -1,5 +1,5 @@
 <?php
-function addTabsOutsidePre($body) {
+function addTabsOutsidePre($body, $tabs) {
     // Temporarily remove content inside <pre> tags by replacing it with a placeholder
     $body = preg_replace_callback('/<pre(.*?)<\/pre>/s', function ($matches) {
         // Store the content of <pre> and replace it with a placeholder
@@ -7,7 +7,7 @@ function addTabsOutsidePre($body) {
     }, $body);
 
     // Add tabs to the content outside <pre> tags
-    $body = preg_replace('/^/m', str_repeat("\t", 4), $body);
+    $body = preg_replace('/^/m', str_repeat("\t", $tabs), $body);
 
     // Restore content inside <pre> tags by decoding the base64 encoded content
     $body = preg_replace_callback('/<pre(.*?)<\/pre>/s', function ($matches) {
@@ -53,7 +53,7 @@ if ( !empty($body) ) {
         $body = $Parsedown->text($body) . "\n";
     }
     
-    $body = addTabsOutsidePre($body);
+    $body = addTabsOutsidePre($body, 4);
     
     echo $body;
     echo tab(3) . "</div>\n";
