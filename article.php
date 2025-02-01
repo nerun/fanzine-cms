@@ -1,4 +1,23 @@
 <?php
+function addTabsOutsidePre($body) {
+    // Temporarily remove content inside <pre> tags by replacing it with a placeholder
+    $body = preg_replace_callback('/<pre(.*?)<\/pre>/s', function ($matches) {
+        // Store the content of <pre> and replace it with a placeholder
+        return "<pre" . base64_encode($matches[1]) . "</pre>";
+    }, $body);
+
+    // Add tabs to the content outside <pre> tags
+    $body = preg_replace('/^/m', str_repeat("\t", 4), $body);
+
+    // Restore content inside <pre> tags by decoding the base64 encoded content
+    $body = preg_replace_callback('/<pre(.*?)<\/pre>/s', function ($matches) {
+        // Decode the base64 encoded content and restore it inside <pre> tags
+        return "<pre" . base64_decode($matches[1]) . "</pre>";
+    }, $body);
+
+    return $body;
+}
+
 $body = file_get_contents($page_file);
 
 if ( !empty($body) ) {
@@ -34,7 +53,8 @@ if ( !empty($body) ) {
         $body = $Parsedown->text($body) . "\n";
     }
     
-    $body = preg_replace('/^/m', str_repeat("\t", 4), $body);
+    $body = addTabsOutsidePre($body);
+    
     echo $body;
     echo tab(3) . "</div>\n";
 } else {
