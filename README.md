@@ -67,22 +67,11 @@ However, if you think you need some help, this is a great start: [CSS Tutorial](
 
 All PHP code run from inside `index.php`: a short file with a few lines of code, easy to understand if you know the basics of PHP, and well commented.
 
-A complementary file, called `main.php` is responsible for creating the main page with "abstracts" of all articles on the site. It lists the contents of the `articles` folder and creates the excerpt, the reader just needs to click on "read more".
+A complementary file, called `main.php` is responsible for creating the main page with "abstracts" of all articles on the site (5 articles per page). It lists the contents of the `articles` folder and creates the excerpt, the reader just needs to click on "read more".
 
-What `index.php` do is to join three html pages into one, in this order:
+Another complementary file, called `articles.php` is responsible for formatting the article itselft.
 
-```
-+ header.html
-+ sidebar.html
-+ render a main page (defaults to 'main.php')
-+ footer.html
-```
-
-The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javascript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `header.html` is the same for all pages. Tons of meta tags written just once!
-
-## Render a Main Page
-
-The "render a main page" step is where a "blog article" is rendered.
+The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javascript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `<header>` and `<footer>` sections are the same for all pages. Tons of meta tags written just once!
 
 ### Hyperlinks
 
