@@ -72,7 +72,7 @@ foreach ($dirs as $key => $value) {
 echo tab(4) . "</div>\n";
 
 // Browsing
-echo tab(4) . '<div style="text-align: center; margin-top: 20px;">' . "\n";
+echo tab(4) . '<div style="text-align: center; margin-top: 20px;" class="abstract">' . "\n";
 
 if ($page > 1) {
     echo tab(5) . '<a href="?page=' . ($page - 1) . '" target="_top">⏪ Recent Articles</a> ' . "\n";
