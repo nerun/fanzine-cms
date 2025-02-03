@@ -27,7 +27,7 @@
                     <!-- Dropdown for smaller screens -->
                     <div id="dropdown-menu">&#9776;</div>
                     <div id="dropdown-menu-content">
-                        <a href="/articles/2_lorem_ipsum.html" target="_top">Lorem ipsum</a>
+                        <a href="/articles/none.html" target="_top">'Page not found' sample</a>
                         <!-- Add other menu items as needed -->
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 echo tab(2) . '<div class="main-container">' . "\n";
                 echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
                 echo tab(4) . '<h3 style="margin-top:0; margin-bottom:0;">Tags</h3>' . "\n";
-                echo tab(4) . '<p><a href="/articles/2_lorem_ipsum.html" target="_top">Lorem ipsum</a></p>' . "\n";
+                echo tab(4) . '<p><a href="/articles/none.html" target="_top">\'Page not found\' sample</a></p>' . "\n";
                 echo tab(3) . "</div>\n";
                 echo tab(3) . '<div id="content" class="content">' . "\n";
                 include($page_file);
