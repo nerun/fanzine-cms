@@ -127,6 +127,10 @@ li:not(:last-child) {
     margin-bottom: 7px;
 }
 
+pre {
+    overflow-x: auto;
+}
+
 @media (max-width: 1440px) {
     .index {
         margin-left: 14%;
