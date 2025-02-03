@@ -14,30 +14,44 @@ $dirs = array_slice($dirs, $start, $articlesPerPage);
 echo tab(4) . '<div class="abstract">' . "\n";
 
 foreach ($dirs as $key => $value) {
-    $abstract = file("articles/$value", FILE_SKIP_EMPTY_LINES);
-    if (mb_strtolower(substr($value, -2)) == 'md') {
-        foreach ($abstract as $k => &$v) {
-            if ($k > 7) {
-                $v = $Parsedown->text($v);
-            }
+    $path = "articles/$value";
+    $abstract = file_get_contents($path);
+
+    // Extract metadata before removing the comment block
+    preg_match('/<!--(.*?)-->/s', $abstract, $matches);
+    $metadata = isset($matches[1]) ? trim($matches[1]) : '';
+
+    // Remove the comment block
+    $abstract = preg_replace_callback('/<!--(.*?)-->/s', function($matches) {
+        // Checks if the comment contains "more" (ignores case and spaces)
+        if (preg_match('/<!--\s*more\s*-->/is', $matches[0])) {
+            return $matches[0]; // Do not remove the comment
         }
+        return ''; // Remove comment
+    }, $abstract);
+
+    // Check if the file is Markdown by extension
+    if (mb_strtolower(substr($value, -3)) == '.md') {
+        $abstract = $Parsedown->text($abstract);
     }
 
-    $patterns = array('/<img src=\"[^"]*\".*\/>/',
-                      '/<fig[caption|ure]+>.*<\/fig[caption|ure]+>/',
-                      '/<h[1-6].*>.*<\/h[1-6]>/');
-    $abstract = preg_replace($patterns, '', $abstract);
-    $abstract = implode(array_slice($abstract, 0, 14));
+    // Remove images, figure tags, and headers
+    $abstract = preg_replace([
+        '/<img src=\"[^"]*\".*\/>/',
+        '/<fig(?:caption|ure)>.*<\/fig(?:caption|ure)>/',
+        '/<h[1-6].*>.*<\/h[1-6]>/'
+    ], '', $abstract);
 
-    $parameters = _getParams($abstract, "articles/$value");
-    $article = $parameters[0];
-    $author  = $parameters[1];
-    $columns = $parameters[2];
-    $date    = $parameters[3];
-    $email   = $parameters[4];
-    $image   = $parameters[5];
-
-    $abstract = preg_replace('/<!--.*?-->/s', '', $abstract);
+    if (preg_match('/<!--\s*more\s*-->/', $abstract)) {
+        // If <!-- more --> is found, truncate content up to that point, excluding the comment itself
+        $abstract = preg_replace('/<!--\s*more\s*-->.*$/s', '', $abstract);
+    } else {
+        // If <!-- more --> is not found, limit the content to the first 9 lines
+        $abstract = implode("\n", array_slice(explode("\n", $abstract), 0, 9));
+    }
+    
+    // Process extracted metadata
+    [$article, $author, $columns, $date, $email, $image] = _getParams($metadata, $path);
 
     echo tab(5) . '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">' . "\n";
     echo tab(6) . '<a href="articles/' . $value . '" target="_top">' . $article . '</a>' . "\n";
@@ -58,11 +72,13 @@ foreach ($dirs as $key => $value) {
     $abstract = preg_replace('/^/m', str_repeat("\t", 5), $abstract);
     $abstract = preg_replace('/^\s*[\r\n]+/m', '', $abstract);
     
-    echo $abstract;
+    echo $abstract . "\n";
     
-    echo tab(5) . '<a href="articles/' . $value . '" target="_top">' . "\n";
-    echo tab(6) . '<img src="/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
-    echo tab(5) . "</a>\n";
+    echo tab(5) . "<p>\n";
+    echo tab(6) . '<a href="articles/' . $value . '" target="_top">' . "\n";
+    echo tab(7) . '<img src="/img/readmore.png" height="24" style="vertical-align:top;" />' . "\n";
+    echo tab(6) . "</a>\n";
+    echo tab(5) . "</p>\n";
     
     if ($dirs[$key] != end($dirs)) {
         echo "\n" . tab(5) . "<hr>\n\n";
