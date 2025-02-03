@@ -76,7 +76,7 @@ foreach ($dirs as $key => $value) {
     
     echo tab(5) . "<p>\n";
     echo tab(6) . '<a href="articles/' . $value . '" target="_top">' . "\n";
-    echo tab(7) . '<img src="/img/readmore.png" height="24" style="vertical-align:top;" />' . "\n";
+    echo tab(7) . '<img src="/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
     echo tab(6) . "</a>\n";
     echo tab(5) . "</p>\n";
     

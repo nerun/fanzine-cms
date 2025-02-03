@@ -13,6 +13,8 @@
 
 This information is relevant because the ASCII format has survived the time and is considered one of the best formats to store electronic texts (etexts) that last in time. Most public domain novells, books, tales and stories available in [Project Gutenberg](https://www.gutenberg.org) are in ASCII format.
 
+<!-- more -->
+
 In the words of Project Gutenberg:[^1]
 
 > _The major point of all this is that years from now Project Gutenberg etexts are still going to be viable, but program after program, and operating system after operating system are going to go the way of the dinosaur, as will all those pieces of hardware running them. Of course, this is valid for all Plain Vanilla ASCII etexts … not just those your access has allowed you to get from Project Gutenberg. The point is that a decade from now we probably won’t have the same operating systems, or the same programs and therefore all the various kinds of etexts that are not Plain Vanilla ASCII will be obsolete. We need to have etexts in files a Plain Vanilla search/reader program can deal with; this is not to say there should never be any markup... just those forms of markup should be easily convertible into regular, Plain Vanilla ASCII files so their utility does not expire when programs to use them are no longer with us. Remember all the trouble with CONVERT programs to get files changed from old word processor programs into Plain Vanilla ASCII?_
