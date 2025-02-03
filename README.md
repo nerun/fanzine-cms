@@ -23,7 +23,7 @@ Unixsheikh.com:
 
 # What is the solution then?
 
-My answer to this call is **Fanzine CMS**: a homemade Content Management System written entirely and only in **PHP** and **HTML5**, with responsive web design and a look and feel which resembles the default theme of a large CMS out there.
+My answer to this call is **Fanzine CMS**: a homemade Content Management System written entirely and only in **PHP** and **HTML5**, with **responsive web design** and a look and feel which resembles the default theme of a large CMS out there.
 
 **Fanzine CMS** has a basic frame: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily turn on/off at will. In fact, with the purpose of reducing the need for knowledge of HTML language, and thanks to the power of PHP, a commented section was added where you can define the default parameters common to all content pages.
 
