@@ -3,11 +3,8 @@
 :author:  Daniel Dias Rodrigues
 :email:   danieldiasr@gmail.com
 :columns: 2
+:image:   screenshot.jpg
 -->
-
-# Fanzine CMS: A Familiar Magazine
-
-![image](./img/screenshot.jpg)
 
 # Needs we don't need
 
