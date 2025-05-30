@@ -4,6 +4,11 @@ $dirs = scandir('articles', SCANDIR_SORT_DESCENDING);
 $ignored = array('.', '..');
 $dirs = array_values(array_diff($dirs, $ignored));
 
+$dirs = array_filter($dirs, function($item) {
+    return !is_dir('articles/' . $item);
+});
+$dirs = array_values($dirs); // Reindex array
+
 $totalArticles = count($dirs);
 $totalPages = ceil($totalArticles / $articlesPerPage);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
