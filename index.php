@@ -1,3 +1,10 @@
+<?php
+header("Content-Security-Policy: default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline';");
+header("X-Content-Type-Options: nosniff");
+header("X-Frame-Options: DENY");
+header("Referrer-Policy: strict-origin-when-cross-origin");
+header("Permissions-Policy: accelerometer=(), camera=(), geolocation=(), microphone=()");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
