@@ -96,11 +96,11 @@ echo tab(4) . "</div>\n";
 echo tab(4) . '<div style="text-align: center; margin-top: 20px;" class="abstract">' . "\n";
 
 if ($page > 1) {
-    echo tab(5) . '<a href="?page=' . ($page - 1) . '" target="_top">⏪ Recent Articles</a> ' . "\n";
+    echo tab(5) . '<a href="?page=' . ($page - 1) . '" target="_top">⏪ Next</a> ' . "\n";
 }
 
 if ($page < $totalPages) {
-    echo tab(5) . '<a href="?page=' . ($page + 1) . '" target="_top">Previous Articles ⏩</a>' . "\n";
+    echo tab(5) . '<a href="?page=' . ($page + 1) . '" target="_top">Previous ⏩</a>' . "\n";
 }
 
 echo tab(4) . "</div>";

@@ -145,13 +145,7 @@ if (isset($_GET['id'])) {
                 and <a href="https://html.spec.whatwg.org/multipage">HTML5</a>.
             </div>
         </footer>
-        <script>
-            document.getElementById('dropdown-menu').addEventListener('click', function() {
-                this.classList.toggle('active');  // Toggles the 'active' class on the menu icon
-                const menuContent = document.getElementById('dropdown-menu-content');
-                menuContent.classList.toggle('active');  // Toggles the 'active' class on menu content
-            });
-        </script>
+        <script src="/js/menu.js"></script>
     </body>
 </html>
 

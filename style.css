@@ -252,7 +252,10 @@ pre {
     }
 
     /* Show dropdown content when active */
-    #dropdown-menu.active + #dropdown-menu-content {
+    #dropdown-menu.active {
+        display: block;
+    }
+    #dropdown-menu-content.active {
         display: block;
     }
 }
