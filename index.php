@@ -80,7 +80,7 @@ function sanitizePageFile($input) {
         <base target="_blank" rel="noreferrer noopener nofollow">
     </head>
     <body class="index">
-        <header>
+        <header id="top">
             <a href="/index.php" target="_top"><img src="/img/banner.webp" width="100%" alt="Banner"></a>
             <nav id="header">
                 <div class="navbar-header">

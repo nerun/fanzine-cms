@@ -16,6 +16,27 @@ $page = max(1, min($page, $totalPages));
 $start = ($page - 1) * $articlesPerPage;
 $dirs = array_slice($dirs, $start, $articlesPerPage);
 
+// ==== Browsing ====
+function _browsing($page, $totalPages, $position){ // top or bottom
+    echo tab(4) . '<div style="text-align: center; margin-' . $position . ': 20px;" class="abstract">' . "\n";
+
+    $next = '<a href="?page=' . ($page + 1) . '" target="_top">next ►</a>';
+    $prev = '<a href="?page=' . ($page - 1) . '" target="_top">◄ prev</a>';
+    $pagination = "<font style=\"color:#2467ab\">[$page/$totalPages]</font>";
+
+    if ($page > 1 && $page >= $totalPages) {
+        echo tab(5) . "$prev $pagination\n";
+    } else if ($page <= 1 && $page < $totalPages) {
+        echo tab(5) . "$pagination $next\n";
+    } else {
+        echo tab(5) . $prev . '&nbsp;&nbsp;' . $pagination . '&nbsp;&nbsp;' . $next . "\n";
+    }
+
+    echo tab(4) . "</div>";
+}
+
+_browsing($page, $totalPages, 'bottom');
+
 echo tab(4) . '<div class="abstract">' . "\n";
 
 foreach ($dirs as $key => $value) {
@@ -92,17 +113,11 @@ foreach ($dirs as $key => $value) {
 
 echo tab(4) . "</div>\n";
 
-// Browsing
-echo tab(4) . '<div style="text-align: center; margin-top: 20px;" class="abstract">' . "\n";
+_browsing($page, $totalPages, 'top');
 
-if ($page > 1) {
-    echo tab(5) . '<a href="?page=' . ($page - 1) . '" target="_top">⏪ Next</a> ' . "\n";
-}
-
-if ($page < $totalPages) {
-    echo tab(5) . '<a href="?page=' . ($page + 1) . '" target="_top">Previous ⏩</a>' . "\n";
-}
-
-echo tab(4) . "</div>";
+echo "\n";
+echo tab(4) . '<div style="text-align: center; margin-top: 10px;" class="abstract">' . "\n";
+echo tab(5) . '<a href="#top" target="_top"><span style="font-size: 40px;">🔝</span></a>' . "\n";
+echo tab(4) . "</div>\n";
 ?>
 
