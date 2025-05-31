@@ -18,21 +18,23 @@ $dirs = array_slice($dirs, $start, $articlesPerPage);
 
 // ==== Browsing ====
 function _browsing($page, $totalPages, $position){ // top or bottom
-    echo tab(4) . '<div style="text-align: center; margin-' . $position . ': 20px;" class="abstract">' . "\n";
+    if ($totalPages > 1) {
+        echo tab(4) . '<div style="text-align: center; margin-' . $position . ': 20px;" class="abstract">' . "\n";
 
-    $next = '<a href="?page=' . ($page + 1) . '" target="_top">next ►</a>';
-    $prev = '<a href="?page=' . ($page - 1) . '" target="_top">◄ prev</a>';
-    $pagination = "<font style=\"color:#2467ab\">[$page/$totalPages]</font>";
+        $next = '<a href="?page=' . ($page + 1) . '" target="_top">next ►</a>';
+        $prev = '<a href="?page=' . ($page - 1) . '" target="_top">◄ prev</a>';
+        $pagination = "<font style=\"color:#2467ab\">[$page/$totalPages]</font>";
 
-    if ($page > 1 && $page >= $totalPages) {
-        echo tab(5) . "$prev $pagination\n";
-    } else if ($page <= 1 && $page < $totalPages) {
-        echo tab(5) . "$pagination $next\n";
-    } else {
-        echo tab(5) . $prev . '&nbsp;&nbsp;' . $pagination . '&nbsp;&nbsp;' . $next . "\n";
+        if ($page > 1 && $page == $totalPages) {
+            echo tab(5) . "$prev $pagination\n";
+        } else if ($page == 1 && $page < $totalPages) {
+            echo tab(5) . "$pagination $next\n";
+        } else { // ($page > 1 && $page < $totalPages)
+            echo tab(5) . $prev . '&nbsp;&nbsp;' . $pagination . '&nbsp;&nbsp;' . $next . "\n";
+        }
+
+        echo tab(4) . "</div>";
     }
-
-    echo tab(4) . "</div>";
 }
 
 _browsing($page, $totalPages, 'bottom');
