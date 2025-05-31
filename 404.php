@@ -1,5 +1,5 @@
 <?php
-echo tab(3) . '<h1 style="line-height:5px; text-align:center;">Oops!</h1>' . "\n";
+echo tab(3) . '<h1 style="text-align:center; line-height:5px;">Oops!</h1>' . "\n";
 
 echo tab(3) . '<h2 style="text-align:center;">Error 404. Page not found.</h2>' . "\n";
 
