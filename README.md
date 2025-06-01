@@ -23,9 +23,9 @@ Unixsheikh.com:
 
 # What is the solution then?
 
-My answer to this call is **Fanzine CMS**: a homemade Content Management System written entirely and only in **PHP** and **HTML5**, with **responsive web design** and a look and feel which resembles the default theme of a large CMS out there.
+My answer to this call is **Fanzine CMS**: a home-made Content Management System (CMS), written almost entirely and exclusively in **PHP** and **HTML5** (I ended up using a single JavaScript, very simple), with **responsive web design** and an appearance that resembles the default theme of a large CMS out there.
 
-**Fanzine CMS** has a basic frame: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily turn on/off at will. In fact, with the purpose of reducing the need for knowledge of HTML language, and thanks to the power of PHP, a commented section was added where you can define the default parameters common to all content pages.
+**Fanzine CMS** has a basic structure: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily activate and deactivate. In fact, in order to reduce the need for knowledge of the HTML language, and thanks to the power of PHP, a commented section has been added where you can define the default parameters common to all content pages.
 
 This section should preferably be placed at the top of the file. Order does not matter:
 
@@ -76,11 +76,9 @@ In fact, this README is written in markdown.
 
 No database required! Place your images in the `img/` folder and your articles in `articles/`, you can organize them by year, etc. Just remember to pass the right path in the links. See below.
 
-## Easy customization
+## CSS customization
 
-The main Cascading Style Sheet (CSS) is very simple: `style.css`. Easy to understand and easy to change.
-
-However, if you think you need some help, this is a great start: [CSS Tutorial](https://www.w3schools.com/Css/). I learned a lot there.
+There is only one Cascading Style Sheet (CSS): `style.css`. And it's not exactly easy to understand. However, if you feel like you need some help, this is a great place to start: [CSS Tutorial](https://www.w3schools.com/css). I learned a lot there. Also, test the validity of your style sheets in [Jigsaw](https://jigsaw.w3.org/css-validator), a CSS validator.
 
 ## Engine
 
