@@ -52,17 +52,17 @@ You can define defaults in `index.php`, look for:
 ```php
 return [
     $getVar('arti(?:cle|go)', $page, 'article title missing'),
-    $getVar('auth?or', $page, 'Nerun'),
+    $getVar('auth?or', $page, 'author name missing'),
     $getVar('colu(?:mn|na)s?', $page, '2'),
     $getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name))),
-    $getVar('e?mail', $page, 'gurpzine@gurpzine.com.br'),
+    $getVar('e?mail', $page, 'author@email.com'),
     $getVar('imagem?', $page, 'none')
 ];
 ```
 
 Format is: `$getVar(:variable:, $page, default)`, do not change `:variable:` and `$page`, but you can change last parameter `default`. If set to `'none'` there is not default value.
 
-Example: in `$getVar('auth?or', $page, 'Nerun')`, the variable `auth?or` is a regex for `:author:` and `:autor:` (in Brazilian Portuguese), and has `'Nerun'` (it's me!) as defaul author's name. If no author name is provided in the commented section above (hiding `:author:`), this name will be used. But if left blank (`:author:` without a name), there will be no author name for the article.
+Example: in `$getVar('auth?or', $page, 'author name missing')`, the variable `auth?or` is a regex for `:author:` and `:autor:` (in Brazilian Portuguese), and has `'author name missing'` as default author's name. If no author name is provided in the commented section above (hiding `:author:`), this string will be used. But if left blank (`:author:` without a name), there will be no author name for the article.
 
 ## Full markdown support
 

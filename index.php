@@ -28,10 +28,10 @@ function _getParams($page, $page_name) {
 
     return [
         $getVar('arti(?:cle|go)', $page, 'article title missing'),
-        $getVar('auth?or', $page, 'Nerun'),
+        $getVar('auth?or', $page, 'author name missing'),
         $getVar('colu(?:mn|na)s?', $page, '2'),
         $getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name))),
-        $getVar('e?mail', $page, 'gurpzine@gurpzine.com.br'),
+        $getVar('e?mail', $page, 'author@email.com'),
         $getVar('imagem?', $page, 'none')
     ];
 }
