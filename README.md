@@ -3,7 +3,7 @@
 :author:  Daniel Dias Rodrigues
 :email:   danieldiasr@gmail.com
 :columns: 2
-:image:   screenshot.jpg
+:image:   screenshot.webp
 -->
 
 # Needs we don't need
