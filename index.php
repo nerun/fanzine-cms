@@ -3,6 +3,7 @@
 if (file_exists('config.php')) {
     require_once 'config.php';
 } else {
+    define('BASE_PATH', '');
     define('LANG', 'en');
     define('TITLE', 'A Familiar Magazine');
     define('AUTHOR', 'Daniel Dias Rodrigues');
@@ -107,23 +108,23 @@ if (!BROWSER_CACHE) {
         <meta name="robots" content="index,follow">
         <meta name="rating" content="general" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/style.css">
-        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH; ?>/style.css">
+        <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/img/favicon.ico" type="image/x-icon"/>
         <base target="_blank" rel="noreferrer noopener nofollow">
     </head>
     <body class="index">
         <header id="top">
-            <a href="/index.php" target="_top"><img src="/img/banner.webp" width="100%" alt="Banner"></a>
+            <a href="<?php echo BASE_PATH; ?>/index.php" target="_top"><img src="<?php echo BASE_PATH; ?>/img/banner.webp" width="100%" alt="Banner"></a>
             <nav id="header">
                 <div class="navbar-header">
-                    <a href="/index.php" target="_top">HOME</a>&emsp;
-                    <a href="/legal.html" target="_top">LICENSE</a>&emsp;
-                    <a href="/README.md" target="_top">README</a>&emsp;
+                    <a href="<?php echo BASE_PATH; ?>/index.php" target="_top">HOME</a>&emsp;
+                    <a href="<?php echo BASE_PATH; ?>/legal.html" target="_top">LICENSE</a>&emsp;
+                    <a href="<?php echo BASE_PATH; ?>/README.md" target="_top">README</a>&emsp;
                     <a href="https://github.com/nerun/fanzine-cms" target="_blank">SOURCE</a>&emsp;
                     <!-- Dropdown for smaller screens -->
                     <div id="dropdown-menu">&#9776;</div>
                     <div id="dropdown-menu-content">
-                        <a href="/articles/none.html" target="_top">'Page not found' sample</a>
+                        <a href="<?php echo BASE_PATH; ?>/articles/none.html" target="_top">"Page not found" sample</a>
                         <!-- Add other menu items as needed -->
                     </div>
                 </div>
@@ -150,7 +151,7 @@ if (isset($_GET['id'])) {
     echo tab(2) . '<div class="main-container">' . "\n";
     echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
     echo tab(4) . '<h3 style="margin-top:0; margin-bottom:0;">Tags</h3>' . "\n";
-    echo tab(4) . '<p><a href="/articles/none.html" target="_top">\'Page not found\' sample</a></p>' . "\n";
+    echo tab(4) . '<p><a href="'.BASE_PATH.'/articles/none.html" target="_top">"Page not found" sample</a></p>' . "\n";
     echo tab(3) . "</div>\n";
     echo tab(3) . '<div id="content" class="content">' . "\n";
 
@@ -177,7 +178,7 @@ if (isset($_GET['id'])) {
                 and <a href="https://html.spec.whatwg.org/multipage">HTML5</a>.
             </div>
         </footer>
-        <script src="/js/menu.js"></script>
+        <script src="<?php echo BASE_PATH; ?>/js/menu.js"></script>
     </body>
 </html>
 

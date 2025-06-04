@@ -1,4 +1,9 @@
 <?php
+// Leave blank if your site is in the root of your server (public_html). Change
+// it if it is in a folder, like a subsite: '/fanzine-cms'.
+define('BASE_PATH', '');
+
+
 /*
  * HTML AND HEAD SETTINGS
  ******************************************************************************/
