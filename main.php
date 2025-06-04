@@ -81,7 +81,7 @@ foreach ($dirs as $key => $value) {
     [$article, $author, $columns, $date, $email, $image] = _getParams($metadata, $path);
 
     echo tab(5) . '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">' . "\n";
-    echo tab(6) . '<a href="' . BASE_PATH . 'articles/' . $value . '" target="_top">' . $article . '</a>' . "\n";
+    echo tab(6) . '<a href="' . BASE_PATH . '/articles/' . $value . '" target="_top">' . $article . '</a>' . "\n";
     echo tab(5) . "</h1>\n";
 
     echo tab(5) . '<p style="margin-top:0; font-size:80%;">' . "\n";
@@ -102,7 +102,7 @@ foreach ($dirs as $key => $value) {
     echo $abstract . "\n";
     
     echo tab(5) . "<p>\n";
-    echo tab(6) . '<a href="' . BASE_PATH . 'articles/' . $value . '" target="_top">' . "\n";
+    echo tab(6) . '<a href="' . BASE_PATH . '/articles/' . $value . '" target="_top">' . "\n";
     echo tab(7) . '<img src="' . BASE_PATH . '/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
     echo tab(6) . "</a>\n";
     echo tab(5) . "</p>\n";
