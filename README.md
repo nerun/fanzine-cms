@@ -8,7 +8,7 @@
 
 # Needs we don't need
 
-We are a species that creates false needs: we create and consume things just because we think we need them, and they are not always the best option. Needs that we do not need. That is why we pollute every space we occupy: from the Pacific Ocean and its islands of trash and plastic, to dark and dirty cities. It would be no different with the internet.
+We are a species that creates false needs: we create and consume things just because we think we need them, and they are not always the best option. Needs we don't need. That is why we pollute every space we occupy: from the Pacific Ocean and its islands of trash and plastic, to dark and dirty cities. It would be no different with the internet.
 
 Internet is polluted with poorly written, excessive, and often unnecessary JavaScript codes, polluted with heavy CMS platforms that, in theory, make life easier for users who could just focus on writing their content and less on structure. But in practice it's not like that: we waste hours, even days, trying to understand how these platforms work, and even more time adjusting plugins, settings, themes, appearances. And it doesn't always work out. Often all these facilities open all sorts of doors for intruders.
 
@@ -27,7 +27,7 @@ My answer to this call is **Fanzine CMS**: a home-made Content Management System
 
 **Fanzine CMS** has a basic structure: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily activate and deactivate. In fact, in order to reduce the need for knowledge of the HTML language, and thanks to the power of PHP, a commented section has been added where you can define the default parameters common to all content pages.
 
-This section should preferably be placed at the top of the file. Order does not matter:
+This section should preferably be placed at the top of the article file (html or markdown). The order does not matter:
 
 ```
 <!--
@@ -47,22 +47,16 @@ This section should preferably be placed at the top of the file. Order does not 
 -   **email** — author's email is optional but, if this parameter is provided, it will be linked to author's name automatically.
 -   **image** — featured image is an optional field. Default size is 640&times;360px for images inside the article (defined in `index.php`) and 432&times;216px for images loaded as thumbnail in the main page (`main.php`). there's no default here.
 
-You can define defaults in `index.php`, look for:
+## Configuration
 
-```php
-return [
-    $getVar('arti(?:cle|go)', $page, 'article title missing'),
-    $getVar('auth?or', $page, 'author name missing'),
-    $getVar('colu(?:mn|na)s?', $page, '2'),
-    $getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name))),
-    $getVar('e?mail', $page, 'author@email.com'),
-    $getVar('imagem?', $page, 'none')
-];
-```
+All basic configuration can be done through the `config.php` file:
 
-Format is: `$getVar(:variable:, $page, default)`, do not change `:variable:` and `$page`, but you can change last parameter `default`. If set to `'none'` there is not default value.
-
-Example: in `$getVar('auth?or', $page, 'author name missing')`, the variable `auth?or` is a regex for `:author:` and `:autor:` (in Brazilian Portuguese), and has `'author name missing'` as default author's name. If no author name is provided in the commented section above (hiding `:author:`), this string will be used. But if left blank (`:author:` without a name), there will be no author name for the article.
+* html language
+* website title
+* meta tags: author, copyright holder, description, keywords, browser cache, etc
+* article defaults for title, authorship, columns, email and image
+* translation of some navigation tags: prev/next
+* etc
 
 ## Full markdown support
 

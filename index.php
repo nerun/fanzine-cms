@@ -1,4 +1,24 @@
 <?php
+// === Load settings ===
+if (file_exists('config.php')) {
+    require_once 'config.php';
+} else {
+    define('LANG', 'en');
+    define('TITLE', 'A Familiar Magazine');
+    define('AUTHOR', 'Daniel Dias Rodrigues');
+    define('COPYRIGHT_HOLDER', 'Daniel Dias Rodrigues');
+    define('DESCRIPTION', 'Basic blog frame created with PHP and HTML5.');
+    define('KEYWORDS', 'PHP, HTML5, Blog, Theme, Site');
+    define('BROWSER_CACHE', false);
+    define('ARTICLE_TITLE', 'article title missing');
+    define('ARTICLE_AUTHOR', 'author name missing');
+    define('ARTICLE_COLUMNS', '2');
+    define('ARTICLE_EMAIL', 'missing e-mail');
+    define('ARTICLE_FEATURED_IMAGE', 'none');
+    define('PREV', 'prev');
+    define('NEXT', 'next');
+}
+
 // === Security headers ===
 header("Content-Security-Policy: default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';");
 header("X-Content-Type-Options: nosniff");
@@ -10,6 +30,13 @@ header("X-Permitted-Cross-Domain-Policies: none");
 header("Cross-Origin-Opener-Policy: same-origin");
 header("Cross-Origin-Embedder-Policy: require-corp");
 header("Cross-Origin-Resource-Policy: same-origin");
+
+// === Cache-Control headers ===
+if (!BROWSER_CACHE) {
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+}
 
 // === Includes Parsedown with SafeMode ===
 require_once('extensions/parsedown/Parsedown.php');
@@ -27,12 +54,12 @@ function _getParams($page, $page_name) {
     };
 
     return [
-        $getVar('arti(?:cle|go)', $page, 'article title missing'),
-        $getVar('auth?or', $page, 'author name missing'),
-        $getVar('colu(?:mn|na)s?', $page, '2'),
+        $getVar('arti(?:cle|go)', $page, ARTICLE_TITLE),
+        $getVar('auth?or', $page, ARTICLE_AUTHOR),
+        $getVar('colu(?:mn|na)s?', $page, ARTICLE_COLUMNS),
         $getVar('dat[ae]', $page, date(DATE_RFC2822, filemtime($page_name))),
-        $getVar('e?mail', $page, 'author@email.com'),
-        $getVar('imagem?', $page, 'none')
+        $getVar('e?mail', $page, ARTICLE_EMAIL),
+        $getVar('imagem?', $page, ARTICLE_FEATURED_IMAGE)
     ];
 }
 
@@ -63,15 +90,19 @@ function sanitizePageFile($input) {
 
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="<?php echo LANG;?>">
     <head>
-        <title>A Familiar Magazine</title>
-        <meta name="author" content="Daniel Dias Rodrigues">
-        <meta name="copyright" content="© <?php echo date('Y');?> Daniel Dias Rodrigues" />
-        <meta name="description" content="Basic blog frame created with PHP and HTML5." />
-        <meta name="keywords" content="PHP, HTML5, Blog, Theme, Site" />
+        <title><?php echo TITLE;?></title>
+        <meta name="author" content="© <?php echo date('Y'); echo ' '.AUTHOR;?>">
+        <meta name="copyright" content="© <?php echo date('Y'); echo ' '.COPYRIGHT_HOLDER;?>" />
+        <meta name="description" content="<?php echo DESCRIPTION;?>" />
+        <meta name="keywords" content="<?php echo KEYWORDS;?>" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+<?php
+if (!BROWSER_CACHE) {
+    echo "\t\t" . '<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">' . "\n";
+}
+?>
         <meta name="robots" content="index,follow">
         <meta name="rating" content="general" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">

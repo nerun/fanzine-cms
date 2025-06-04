@@ -21,8 +21,8 @@ function _browsing($page, $totalPages, $position){ // top or bottom
     if ($totalPages > 1) {
         echo tab(4) . '<div style="text-align: center; margin-' . $position . ': 20px;" class="abstract">' . "\n";
 
-        $next = '<a href="?page=' . ($page + 1) . '" target="_top">next ►</a>';
-        $prev = '<a href="?page=' . ($page - 1) . '" target="_top">◄ prev</a>';
+        $next = '<a href="?page=' . ($page + 1) . '" target="_top">' . NEXT . ' ►</a>';
+        $prev = '<a href="?page=' . ($page - 1) . '" target="_top">◄ ' . PREV . '</a>';
         $pagination = "<font style=\"color:#2467ab\">[$page/$totalPages]</font>";
 
         if ($page > 1 && $page == $totalPages) {
