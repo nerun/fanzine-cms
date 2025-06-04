@@ -15,6 +15,7 @@ if (file_exists('config.php')) {
     define('ARTICLE_COLUMNS', '2');
     define('ARTICLE_EMAIL', 'missing e-mail');
     define('ARTICLE_FEATURED_IMAGE', 'none');
+    define('ARTICLES_PER_PAGE', 5);
     define('PREV', 'prev');
     define('NEXT', 'next');
 }

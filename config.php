@@ -51,6 +51,9 @@ define('ARTICLE_EMAIL', 'missing e-mail');
 // that insert images will not be rendered if no featured image is provided.
 define('ARTICLE_FEATURED_IMAGE', 'none');
 
+// Number of articles displayed per page
+define('ARTICLES_PER_PAGE', 5);
+
 
 /*
  * TRANSLATION

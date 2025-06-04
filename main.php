@@ -1,5 +1,4 @@
 <?php
-$articlesPerPage = 5;
 $dirs = scandir('articles', SCANDIR_SORT_DESCENDING);
 $ignored = array('.', '..');
 $dirs = array_values(array_diff($dirs, $ignored));
@@ -10,11 +9,11 @@ $dirs = array_filter($dirs, function($item) {
 $dirs = array_values($dirs); // Reindex array
 
 $totalArticles = count($dirs);
-$totalPages = ceil($totalArticles / $articlesPerPage);
+$totalPages = ceil($totalArticles / ARTICLES_PER_PAGE);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max(1, min($page, $totalPages));
-$start = ($page - 1) * $articlesPerPage;
-$dirs = array_slice($dirs, $start, $articlesPerPage);
+$start = ($page - 1) * ARTICLES_PER_PAGE;
+$dirs = array_slice($dirs, $start, ARTICLES_PER_PAGE);
 
 // ==== Browsing ====
 function _browsing($page, $totalPages, $position){ // top or bottom
