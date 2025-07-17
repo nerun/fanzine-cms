@@ -117,8 +117,8 @@ echo tab(4) . "</div>\n";
 _browsing($page, $totalPages, 'top');
 
 echo "\n";
-echo tab(4) . '<div style="text-align: center; margin-top: 10px;" class="abstract">' . "\n";
-echo tab(5) . '<a href="#top" target="_top"><span style="font-size: 40px;">🔝</span></a>' . "\n";
+echo tab(4) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
+echo tab(5) . '<a href="#top" target="_top" style="color:none; text-decoration:none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
 echo tab(4) . "</div>\n";
 ?>
 

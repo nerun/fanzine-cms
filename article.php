@@ -60,6 +60,11 @@ if ( !empty($body) ) {
     
     echo $body;
     echo tab(3) . "</div>\n";
+
+    echo "\n";
+    echo tab(3) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
+    echo tab(4) . '<a href="#top" target="_top" style="color:none; text-decoration:none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
+    echo tab(3) . "</div>\n";
 } else {
     include('404.php');
 }
