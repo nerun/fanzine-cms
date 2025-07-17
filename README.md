@@ -56,6 +56,7 @@ All basic configuration can be done through the `config.php` file:
 * meta tags: author, copyright holder, description, keywords, browser cache, etc
 * article defaults for title, authorship, columns, email and image
 * translation of some navigation tags: prev/next
+* `BASE_PATH` constant: useful if your site is a "subsite" (not in the root folder)
 * etc
 
 ## Full markdown support
