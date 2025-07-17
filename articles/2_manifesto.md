@@ -45,10 +45,10 @@ The filename `test.md` tells Pandoc which file to convert. The `-s` option instr
 
 The overall appearance of the converted file is excellent—there’s really nothing to complain about.
 
-July 27, 2023 (_revised July 11, 2025_)
+July 27, 2023 (_revised July 17, 2025_)
 
 Daniel Dias Rodrigues
 
-[^1]: Hart, Michael (1992, August). _The History and Philosophy of Project Gutenberg_. Project Gutenberg. https://www.gutenberg.org/about/background/history_and_philosophy.html
+[^1]: Michael Hart, "The History and Philosophy of Project Gutenberg," *Project Gutenberg*, August 1992, [https://www.gutenberg.org/about/<wbr>background/history\_and\_<wbr>philosophy.html](https://www.gutenberg.org/about/background/history_and_philosophy.html#the-project-gutenberg-philosophy-continued-2).
 
-[^2]: _Getting started with pandoc: Step 6 - Converting a file_. Pandoc: a universal document converter. https://pandoc.org/getting-started.html#step-6-converting-a-file
+[^2]: "Getting started with pandoc. Step 6: Converting a File," *Pandoc*, accessed July 27, 2023, https://pandoc.org/getting-started.html#step-6-converting-a-file.
