@@ -1,11 +1,3 @@
-<!--
-:article: A Familiar Magazine
-:author:  Daniel Dias Rodrigues
-:email:   danieldiasr@gmail.com
-:columns: 2
-:image:   screenshot.webp
--->
-
 # Needs we don't need
 
 We are a species that creates false needs: we create and consume things just because we think we need them, and they are not always the best option. Needs we don't need. That is why we pollute every space we occupy: from the Pacific Ocean and its islands of trash and plastic, to dark and dirty cities. It would be no different with the internet.
@@ -17,35 +9,35 @@ It doesn't stop there. Non-necessary needs call for even more non-necessary need
 ## Suggested readings
 
 Unixsheikh.com:
-  - [SQLite the only database you will ever need in most cases](https://unixsheikh.com/articles/sqlite-the-only-database-you-will-ever-need-in-most-cases.html).
-  - [The proper design process in web development](https://unixsheikh.com/articles/the-proper-design-process-in-web-development.html).
-  - [Stop pushing JavaScript!](https://unixsheikh.com/articles/stop-pushing-javascript.html)
+  - [SQLite the only database you will ever need in most cases](https://unixdigest.com/articles/sqlite-the-only-database-you-will-ever-need-in-most-cases.html).
+  - [The proper design process in web development](https://unixdigest.com/articles/the-proper-design-process-in-web-development.html).
+  - [Stop pushing JavaScript!](https://unixdigest.com/articles/stop-pushing-javascript.html)
 
 # What is the solution then?
 
-My answer to this call is **Fanzine CMS**: a home-made Content Management System (CMS), written almost entirely and exclusively in **PHP** and **HTML5** (I ended up using a single JavaScript, very simple), with **responsive web design** and an appearance that resembles the default theme of a large CMS out there.
+My answer to this call is **Fanzine CMS**: a homegrown Content Management System (CMS) built almost entirely in **PHP** and **HTML5**, with only a single JavaScript file—for the hamburger menu. It features **responsive web design** and a look inspired by the default theme of a well-known CMS.
 
-**Fanzine CMS** has a basic structure: banner, navigation bar, side navigation column, main content area and a footer. The content also allows the use of featured images, which the user can easily activate and deactivate. In fact, in order to reduce the need for knowledge of the HTML language, and thanks to the power of PHP, a commented section has been added where you can define the default parameters common to all content pages.
+**Fanzine CMS** follows a straightforward layout: banner, navigation bar, sidebar, main content area, and footer. It supports featured images that can be easily toggled on or off by the user. To streamline content creation and reduce the need for HTML knowledge, each article is paired with a `.yaml` file containing metadata used to configure key elements of the page.
 
-This section should preferably be placed at the top of the article file (html or markdown). The order does not matter:
+The YAML file must share the same name as the corresponding article (HTML or Markdown) and should ideally include the following fields:
 
-```
-<!--
-:article: Interesting title
-:author:  John Doe
-:columns: auto, 1, 2, 3... etc
-:date:    Tue, 12 Dec 2023
-:email:   author@email.com
-:image:   image-in-img-folder.jpg
--->
+```yaml
+article: Interesting title
+author:  John Doe
+columns: auto
+date:    Tue, 12 Dec 2023
+email:   author@email.com
+image:   image-in-img-folder.jpg
 ```
 
--   **article** — page title.
--   **author** — author's name.
--   **columns** — is the `style="column-count:(...)"`. The default is 2, but you can let it in `auto`, it's good for most cases. Will be created as many columns of 340px as possible (see `.columns` in `style.css` to change default width). A typical screen FHD 1920&times;1080 will have 3 columns.
--   **date** — if blank or missing PHP will get the [file modification time](https://www.php.net/manual/en/function.filemtime.php) and fill this field for you!
--   **email** — author's email is optional but, if this parameter is provided, it will be linked to author's name automatically.
--   **image** — featured image is an optional field. Default size is 640&times;360px for images inside the article (defined in `index.php`) and 432&times;216px for images loaded as thumbnail in the main page (`main.php`). there's no default here.
+* **article** — Page title.
+* **author** — Author's name.
+* **columns** — Sets `style="column-count:(...)"`. The default is `2`, but `auto` works well in most cases. It creates as many 340px columns as the screen allows (see `.columns` in `style.css` to adjust width). A typical 1920×1080 screen yields 3 columns.
+* **date** — If blank or omitted, PHP automatically fills it using [file modification time](https://www.php.net/manual/en/function.filemtime.php).
+* **email** — Optional. If present, it becomes a link on the author's name.
+* **image** — Optional featured image. Default size is 640×360px within articles (`index.php`) and 432×216px for thumbnails on the main page (`main.php`). No fallback image is used.
+
+This structure keeps content creation clean and consistent, while allowing flexibility and automation through PHP.
 
 ## Configuration
 

@@ -117,7 +117,7 @@ if (!BROWSER_CACHE) {
             <nav id="header">
                 <div class="navbar-header">
                     <a href="<?php echo BASE_PATH; ?>/index.php" target="_top">HOME</a>&emsp;
-                    <a href="<?php echo BASE_PATH; ?>/legal.html" target="_top">LICENSE</a>&emsp;
+                    <a href="<?php echo BASE_PATH; ?>/LICENSE.md" target="_top">LICENSE</a>&emsp;
                     <a href="<?php echo BASE_PATH; ?>/README.md" target="_top">README</a>&emsp;
                     <a href="https://github.com/nerun/fanzine-cms" target="_blank">SOURCE</a>&emsp;
                     <!-- Dropdown for smaller screens -->

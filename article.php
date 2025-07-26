@@ -44,7 +44,13 @@ if ( !empty($body) ) {
     // If featured image is not missing and it is not set to 'none', insert it
     if ( !empty($image) && mb_strtolower($image) != "none" ){
         $parts = explode('_', $page_file);
-        echo tab(3) . '<img src="' . BASE_PATH . '/' . $parts[0] . '/' . $image . '" width="640"' .
+        if (ctype_digit(substr($parts[0], -1))) {
+            $postFolder = '/' . $parts[0] . '/';
+        }
+        else {
+            $postFolder = '/';
+        }
+        echo tab(3) . '<img src="' . BASE_PATH . $postFolder . $image . '" width="640"' .
             ' height="360" style="margin: 1px auto 1px; display: block;"' .
             ' class="responsive-img">' . "\n";
         echo tab(3) . '<hr width="75%">' . "\n";
