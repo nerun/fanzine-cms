@@ -23,15 +23,19 @@ function addTabsOutsidePre($body, $tabs) {
 
 $body = file_get_contents($page_file);
 
+// Extract metadata from yaml
+$yaml = preg_replace('/\.[^.]+$/', '', $page_file) . '.yaml';
+$metadata = file_get_contents($yaml);
+
 if ( !empty($body) ) {
-    $parameters = _getParams($body, $page_file);
+    $parameters = _getParams($metadata, $yaml);
     $article = $parameters[0];
     $author  = $parameters[1];
     $columns = $parameters[2];
     $date    = $parameters[3];
     $email   = $parameters[4];
     $image   = $parameters[5];
-    
+
     // If email is not missing, link it to the author
     if ( !empty($email) ){
         $author = '<a href="mailto:'.$email.'">'.$author.'</a>';
@@ -39,7 +43,8 @@ if ( !empty($body) ) {
 
     // If featured image is not missing and it is not set to 'none', insert it
     if ( !empty($image) && mb_strtolower($image) != "none" ){
-        echo tab(3) . '<img src="' . BASE_PATH . '/img/' . $image . '" width="640"' .
+        $parts = explode('_', $page_file);
+        echo tab(3) . '<img src="' . BASE_PATH . '/' . $parts[0] . '/' . $image . '" width="640"' .
             ' height="360" style="margin: 1px auto 1px; display: block;"' .
             ' class="responsive-img">' . "\n";
         echo tab(3) . '<hr width="75%">' . "\n";

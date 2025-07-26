@@ -68,7 +68,7 @@
 /* Index page */
 .index {
     background-attachment: fixed;
-    background-image: url('img/bg_lipsum.gif');
+    background-image: url('../img/bg_lipsum.gif');
     display: block;
     font-family: "Liberation Serif", "Times New Roman", Garamond, serif, Verdana, sans-serif;
     font-size: 14pt;
@@ -224,14 +224,15 @@ pre {
         border-radius: 5px;
         color: white;
         cursor: pointer;
+        font-size: 18pt;
     }
 
     /* Dropdown content hidden by default */
     #dropdown-menu-content {
         display: none;
         position: absolute;
-        top: 35px;
-        right: 0;
+        top: 65px;
+        right: 10px;
         background-color: #27272a;
         border: 1px solid #023c7f;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);

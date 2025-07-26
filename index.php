@@ -41,8 +41,8 @@ if (!BROWSER_CACHE) {
 }
 
 // === Includes Parsedown with SafeMode ===
-require_once('extensions/parsedown/Parsedown.php');
-require_once('extensions/parsedown-extra/ParsedownExtra.php');
+require_once('assets/php/Parsedown.php');
+require_once('assets/php/ParsedownExtra.php');
 
 $Parsedown = new ParsedownExtra();
 //$Parsedown->setSafeMode(true); // Protects against embedded XSS in Markdown
@@ -52,7 +52,7 @@ $Parsedown = new ParsedownExtra();
 // Extracts metadata from the article
 function _getParams($page, $page_name) {
     $getVar = function($var, $page, $missing) {
-        return preg_match("/:$var:(.*)/", substr($page, 0, 250), $matches) ? trim($matches[1]) : $missing;
+        return preg_match("/$var:(.*)/", substr($page, 0, 250), $matches) ? trim($matches[1]) : $missing;
     };
 
     return [
@@ -73,12 +73,12 @@ function tab($times){
 // Sanitizes the 'id' parameter
 function sanitizePageFile($input) {
     $basename = basename($input); // Protects against path traversal
-
+    
     if (preg_match('/^[a-zA-Z0-9_\-]+\.(php|md|htm|html)$/', $basename)) {
-        // Check if it is in /articles/
-        $pathInArticles = "articles/" . $basename;
-        if (file_exists($pathInArticles)) {
-            return $pathInArticles;
+        // Check if it is in /content/
+        $pathInContent = "content/" . $basename;
+        if (file_exists($pathInContent)) {
+            return $pathInContent;
         }
 
         // Check if is in root
@@ -99,7 +99,6 @@ function sanitizePageFile($input) {
         <meta name="copyright" content="© <?php echo date('Y'); echo ' '.COPYRIGHT_HOLDER;?>" />
         <meta name="description" content="<?php echo DESCRIPTION;?>" />
         <meta name="keywords" content="<?php echo KEYWORDS;?>" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <?php
 if (!BROWSER_CACHE) {
     echo "\t\t" . '<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">' . "\n";
@@ -107,14 +106,14 @@ if (!BROWSER_CACHE) {
 ?>
         <meta name="robots" content="index,follow">
         <meta name="rating" content="general" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH; ?>/style.css">
-        <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/img/favicon.ico" type="image/x-icon"/>
-        <base target="_blank" rel="noreferrer noopener nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH; ?>/assets/css/style.css">
+        <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/assets/img/favicon.ico" type="image/x-icon"/>
+        <base target="_blank" rel="noreferrer noopener">
     </head>
     <body class="index">
         <header id="top">
-            <a href="<?php echo BASE_PATH; ?>/index.php" target="_top"><img src="<?php echo BASE_PATH; ?>/img/banner.webp" width="100%" alt="Banner"></a>
+            <a href="<?php echo BASE_PATH; ?>/index.php" target="_top"><img src="<?php echo BASE_PATH; ?>/assets/img/banner.webp" width="100%" alt="Banner"></a>
             <nav id="header">
                 <div class="navbar-header">
                     <a href="<?php echo BASE_PATH; ?>/index.php" target="_top">HOME</a>&emsp;
@@ -124,7 +123,7 @@ if (!BROWSER_CACHE) {
                     <!-- Dropdown for smaller screens -->
                     <div id="dropdown-menu">&#9776;</div>
                     <div id="dropdown-menu-content">
-                        <a href="<?php echo BASE_PATH; ?>/articles/none.html" target="_top">"Page not found" sample</a>
+                        <a href="<?php echo BASE_PATH; ?>/content/none.html" target="_top">"Page not found" sample</a>
                         <!-- Add other menu items as needed -->
                     </div>
                 </div>
@@ -151,7 +150,7 @@ if (isset($_GET['id'])) {
     echo tab(2) . '<div class="main-container">' . "\n";
     echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
     echo tab(4) . '<h3 style="margin-top:0; margin-bottom:0;">Tags</h3>' . "\n";
-    echo tab(4) . '<p><a href="'.BASE_PATH.'/articles/none.html" target="_top">"Page not found" sample</a></p>' . "\n";
+    echo tab(4) . '<p><a href="'.BASE_PATH.'/content/none.html" target="_top">"Page not found" sample</a></p>' . "\n";
     echo tab(3) . "</div>\n";
     echo tab(3) . '<div id="content" class="content">' . "\n";
 
@@ -178,7 +177,6 @@ if (isset($_GET['id'])) {
                 and <a href="https://html.spec.whatwg.org/multipage">HTML5</a>.
             </div>
         </footer>
-        <script src="<?php echo BASE_PATH; ?>/js/menu.js"></script>
+        <script src="<?php echo BASE_PATH; ?>/assets/js/menu.js"></script>
     </body>
 </html>
-

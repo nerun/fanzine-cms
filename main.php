@@ -1,19 +1,21 @@
 <?php
-$dirs = scandir('articles', SCANDIR_SORT_DESCENDING);
+$files = scandir('content', SCANDIR_SORT_DESCENDING);
 $ignored = array('.', '..');
-$dirs = array_values(array_diff($dirs, $ignored));
+$files = array_values(array_diff($files, $ignored));
 
-$dirs = array_filter($dirs, function($item) {
-    return !is_dir('articles/' . $item);
+$files = array_filter($files, function($item) {
+    $fullpath = 'content/' . $item;
+    return is_file($fullpath) && preg_match('/\.(md|html?|php)$/i', $item);
 });
-$dirs = array_values($dirs); // Reindex array
 
-$totalArticles = count($dirs);
+$files = array_values($files); // Reindex array
+
+$totalArticles = count($files);
 $totalPages = ceil($totalArticles / ARTICLES_PER_PAGE);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max(1, min($page, $totalPages));
 $start = ($page - 1) * ARTICLES_PER_PAGE;
-$dirs = array_slice($dirs, $start, ARTICLES_PER_PAGE);
+$files = array_slice($files, $start, ARTICLES_PER_PAGE);
 
 // ==== Browsing ====
 function _browsing($page, $totalPages, $position){ // top or bottom
@@ -40,22 +42,13 @@ _browsing($page, $totalPages, 'bottom');
 
 echo tab(4) . '<div class="abstract">' . "\n";
 
-foreach ($dirs as $key => $value) {
-    $path = "articles/$value";
+foreach ($files as $key => $value) {
+    $path = "content/$value";
     $abstract = file_get_contents($path);
 
-    // Extract metadata before removing the comment block
-    preg_match('/<!--(.*?)-->/s', $abstract, $matches);
-    $metadata = isset($matches[1]) ? trim($matches[1]) : '';
-
-    // Remove the comment block
-    $abstract = preg_replace_callback('/<!--(.*?)-->/s', function($matches) {
-        // Checks if the comment contains "more" (ignores case and spaces)
-        if (preg_match('/<!--\s*more\s*-->/is', $matches[0])) {
-            return $matches[0]; // Do not remove the comment
-        }
-        return ''; // Remove comment
-    }, $abstract);
+    // Extract metadata from yaml
+    $yaml = preg_replace('/\.[^.]+$/', '', $path) . '.yaml';
+    $metadata = file_get_contents($yaml);
 
     // Check if the file is Markdown by extension
     if (mb_strtolower(substr($value, -3)) == '.md') {
@@ -81,7 +74,7 @@ foreach ($dirs as $key => $value) {
     [$article, $author, $columns, $date, $email, $image] = _getParams($metadata, $path);
 
     echo tab(5) . '<h1 style="margin-top:0; margin-bottom:0; text-align:left;">' . "\n";
-    echo tab(6) . '<a href="' . BASE_PATH . '/articles/' . $value . '" target="_top">' . $article . '</a>' . "\n";
+    echo tab(6) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . $article . '</a>' . "\n";
     echo tab(5) . "</h1>\n";
 
     echo tab(5) . '<p style="margin-top:0; font-size:80%;">' . "\n";
@@ -89,8 +82,9 @@ foreach ($dirs as $key => $value) {
     echo tab(5) . "</p>\n";
 
     if (!empty($image) && mb_strtolower($image) != "none") {
-        echo tab(5) . '<a href="' . BASE_PATH . '/articles/' . $value . '" target="_top">' . "\n";
-        echo tab(6) . '<img src="' . BASE_PATH . '/img/' . $image .
+        echo tab(5) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
+        $parts = explode('_', $value);
+        echo tab(6) . '<img src="' . BASE_PATH . '/content/' . $parts[0] . '/' . $image .
             '" width="340" height="170" style="float:right; margin-left:15px; margin-bottom:15px"' .
             ' class="responsive-img">' . "\n";
         echo tab(5) . "</a>\n";
@@ -102,12 +96,12 @@ foreach ($dirs as $key => $value) {
     echo $abstract . "\n";
     
     echo tab(5) . "<p>\n";
-    echo tab(6) . '<a href="' . BASE_PATH . '/articles/' . $value . '" target="_top">' . "\n";
-    echo tab(7) . '<img src="' . BASE_PATH . '/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
+    echo tab(6) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
+    echo tab(7) . '<img src="' . BASE_PATH . '/assets/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
     echo tab(6) . "</a>\n";
     echo tab(5) . "</p>\n";
     
-    if ($dirs[$key] != end($dirs)) {
+    if ($files[$key] != end($files)) {
         echo "\n" . tab(5) . "<hr>\n\n";
     }
 }
@@ -121,4 +115,3 @@ echo tab(4) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
 echo tab(5) . '<a href="#top" target="_top" style="color:none; text-decoration:none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
 echo tab(4) . "</div>\n";
 ?>
-

@@ -1,12 +1,3 @@
-<!--
-:article:   Apologetic manifesto of the universal format
-:author:    Daniel Dias Rodrigues
-:columns:   2
-:date:      Thur, 27 jul 2023
-:email:     danieldiasr@gmail.com
-:image:     markdown-mark.webp
--->
-
 ## A Format to Last Through Time
 
 [The Unicode Standard](https://en.wikipedia.org/wiki/Unicode) was a revolution in transcending the limitations of traditional character encodings such as ASCII, because Unicode supports characters beyond the 128 available in the English language, which makes it universal. The [UTF-8](https://en.wikipedia.org/wiki/UTF-8) format became a masterful implementation of the Unicode standard while maintaining backward compatibility with ASCII. In fact, ASCII is now a subset of UTF-8.
