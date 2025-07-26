@@ -41,63 +41,63 @@ This structure keeps content creation clean and consistent, while allowing flexi
 
 ## Configuration
 
-All basic configuration can be done through the `config.php` file:
+Basic configuration is handled through the `config.php` file, including:
 
-* html language
-* website title
-* meta tags: author, copyright holder, description, keywords, browser cache, etc
-* article defaults for title, authorship, columns, email and image
-* translation of some navigation tags: prev/next
-* `BASE_PATH` constant: useful if your site is a "subsite" (not in the root folder)
-* etc
+* HTML language
+* Website title
+* Meta tags: author, copyright, description, keywords, browser cache, etc.
+* Default values for articles: title, author, columns, email, and image
+* Navigation labels translation: prev/next
+* `BASE_PATH` constant — useful if your site is hosted in a subdirectory (not at the root)
+* And more
 
-## Full markdown support
+## Full Markdown Support
 
-Thanks to Emanuil Rusev's [Parsedown](https://github.com/erusev/parsedown) / [ParsedownExtra](https://github.com/erusev/parsedown-extra), **Fanzine CMS** has full support to [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/). This is important because "Markdown’s syntax is intended for one purpose: to be used as a format for writing for the web."[^1]
+Thanks to Emanuil Rusev’s [Parsedown](https://github.com/erusev/parsedown) and [ParsedownExtra](https://github.com/erusev/parsedown-extra), **Fanzine CMS** fully supports [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/). This matters because "Markdown’s syntax is intended for one purpose: to be used as a format for writing for the web."[^1]
 
-In fact, this README is written in markdown.
+In fact, this very README is written in Markdown.
 
-[^1]: J. Gruber. _Daring Fireball: Markdown syntax documentation_. Overview: [Philosophy](https://daringfireball.net/projects/markdown/syntax#philosophy).
+[^1]: J. Gruber. *Daring Fireball: Markdown syntax documentation*. Overview: [Philosophy](https://daringfireball.net/projects/markdown/syntax#philosophy).
 
-## No database required
+## No Database Required
 
-No database required! Place your images in the `img/` folder and your articles in `articles/`, you can organize them by year, etc. Just remember to pass the right path in the links. See below.
+No database needed! Just place your images in the `img/` folder and your articles in `articles/`. You can organize articles by year or any other structure. Just ensure links point to the correct paths. See examples below.
 
-## CSS customization
+## CSS Customization
 
-There is only one Cascading Style Sheet (CSS): `style.css`. And it's not exactly easy to understand. However, if you feel like you need some help, this is a great place to start: [CSS Tutorial](https://www.w3schools.com/css). I learned a lot there. Also, test the validity of your style sheets in [Jigsaw](https://jigsaw.w3.org/css-validator), a CSS validator.
+There’s only one CSS file: `style.css`. It may not be beginner-friendly, but if you’re looking to learn or tweak it, [CSS Tutorial](https://www.w3schools.com/css) is a good place to start — that’s where I learned a lot. Also, check your styles using [Jigsaw](https://jigsaw.w3.org/css-validator), a CSS validation tool.
 
 ## Engine
 
-All PHP code run from inside `index.php`: a short file with a few lines of code, easy to understand if you know the basics of HTML and PHP, and well commented.
+All PHP logic runs through `index.php`: a short, well-commented file that's easy to follow if you know the basics of HTML and PHP.
 
-A complementary file, called `main.php`, is responsible for creating the main page with "abstracts" of all the articles on the site, and then dividing them into groups of 5 articles abstracts per page (you can change this in the first line: `$articlesPerPage = 5;`). The reader only needs to click on "read more", or on the article title itself. This is done by the script, which lists the contents of the `articles` folder and creates the excerpt for each file found there. The script will use the `<!-- more -->` tag, identifying as an abstract only what is before it. If no "more" tag is found, it will select the first 9 lines (of HTML code, not of the text).
+A complementary file, `main.php`, builds the homepage by displaying "abstracts" for all articles, grouped in pages of 5 (modifiable at the top of the file: `$articlesPerPage = 5;`). Readers can click "read more" or the article title to view the full content. The script scans the `articles` folder and generates a preview for each file using the `<!-- more -->` tag. If the tag is missing, it defaults to the first 9 lines of HTML (not text).
 
-Another complementary file, called `articles.php` is responsible for formatting the full article itself.
+Another file, `articles.php`, handles formatting and display of the full article.
 
-The entire page is rebuilded and reloaded. There are no frames like there were in HTML4 (frameset, frame, etc.). But as it's a lightweight website (no heavy scripts, no javascript, no database), it's still faster than a CMS. This method is also cost-effective: you don't have to rewrite vast lines of repetitive code. For example: `<meta>` elements, `<header>` and `<footer>` sections are the same for all pages. Tons of tags written just once!
+The entire page is rebuilt on each load — no frames (e.g., `frameset`, `frame`) as in HTML4. Still, it's faster than a traditional CMS thanks to its lightweight approach: no heavy scripts, no JavaScript, and no database. It’s also efficient: you only write repeated sections once (e.g., `<meta>`, `<header>`, `<footer>`).
 
 ### Hyperlinks
 
-We can pass some arguments to the engine (`index.php`) via URL, using:
+You can pass arguments to `index.php` via URL:
 
-```
+```html
 <a href="index.php?id=page.html">...</a>
 ```
 
-And it will redirect to:
+Which resolves to:
 
 ```
 https://site.com/index.php?id=page.html
 ```
 
-You can pass subfolders:
+You can also pass subfolders:
 
-```
+```html
 <a href="index.php?id=articles/2023/12/page.html">...</a>
 ```
 
-And it will redirect to:
+Which resolves to:
 
 ```
 https://site.com/index.php?id=articles/2023/12/page.html
@@ -105,29 +105,29 @@ https://site.com/index.php?id=articles/2023/12/page.html
 
 ### Nice URLs
 
-If you use the `.htaccess` we provide, the rewrite rules will allow you to use "nice urls" by omitting the **`index.php?id=`** portion:
+If you use the provided `.htaccess` file, the rewrite rules allow for cleaner URLs by omitting the `index.php?id=` part:
 
-```
+```html
 <a href="articles/2023/12/page.html">...</a>
 ```
 
-Will be redirected to:
+Will resolve as:
 
 ```
 https://site.com/articles/2023/12/page.html
 ```
 
-Don't forget to use root relative URLs: `/articles` not `articles`. Do the same for `img` folder or any other internal link.
+Use root-relative URLs (e.g., `/articles`, not `articles`) for all internal links — including images, stylesheets, etc.
 
-#### Enable Mod_Rewrite in Apache2
+#### Enabling mod\_rewrite in Apache2
 
-In order to "nice urls" to work, you do need to enable **mod_rewrite**. The command to do this in a Linux server is:
+To make "nice URLs" work, you must enable **mod\_rewrite**. On a Linux server, run:
 
 ```console
 $ sudo a2enmod rewrite
 ```
 
-The above command will enable rewrite mode or inform you that it is already in use. After that, restart Apache.
+This enables the rewrite module (or informs you it's already enabled). Then, restart Apache:
 
 ```console
 $ sudo service apache2 restart
