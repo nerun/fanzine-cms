@@ -109,7 +109,7 @@ if (!BROWSER_CACHE) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH; ?>/assets/css/style.css">
         <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/assets/img/favicon.ico" type="image/x-icon"/>
-        <base target="_blank" rel="noreferrer noopener">
+        <!-- <base target="_blank" rel="noreferrer noopener"> -->
     </head>
     <body class="index">
         <header id="top">
