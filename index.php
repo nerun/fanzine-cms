@@ -70,6 +70,14 @@ function tab($times){
     return str_repeat("\t", $times);
 }
 
+// Generates back to top button
+function backButton($tab1, $tab2){
+    echo "\n";
+    echo tab($tab1) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
+    echo tab($tab2) . '<a href="#top" target="_top" style="color: inherit; text-decoration: none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
+    echo tab($tab1) . "</div>\n";
+}
+
 // Sanitizes the 'id' parameter
 function sanitizePageFile($input) {
     $basename = basename($input); // Protects against path traversal
@@ -96,24 +104,21 @@ function sanitizePageFile($input) {
     <head>
         <title><?php echo TITLE;?></title>
         <meta name="author" content="© <?php echo date('Y'); echo ' '.AUTHOR;?>">
-        <meta name="copyright" content="© <?php echo date('Y'); echo ' '.COPYRIGHT_HOLDER;?>" />
-        <meta name="description" content="<?php echo DESCRIPTION;?>" />
-        <meta name="keywords" content="<?php echo KEYWORDS;?>" />
-<?php
-if (!BROWSER_CACHE) {
-    echo "\t\t" . '<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">' . "\n";
-}
-?>
+        <meta name="copyright" content="© <?php echo date('Y'); echo ' '.COPYRIGHT_HOLDER;?>">
+        <meta name="description" content="<?php echo DESCRIPTION;?>">
+        <meta name="keywords" content="<?php echo KEYWORDS;?>">
         <meta name="robots" content="index,follow">
-        <meta name="rating" content="general" />
+        <meta name="rating" content="general">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH; ?>/assets/css/style.css">
-        <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/assets/img/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/assets/img/favicon.ico" type="image/x-icon">
         <!-- <base target="_blank" rel="noreferrer noopener"> -->
     </head>
     <body class="index">
         <header id="top">
-            <a href="<?php echo BASE_PATH; ?>/index.php" target="_top"><img src="<?php echo BASE_PATH; ?>/assets/img/banner.webp" width="100%" alt="Banner"></a>
+            <a href="<?php echo BASE_PATH; ?>/index.php" target="_top">
+                <img src="<?php echo BASE_PATH; ?>/assets/img/banner.webp" alt="Banner" style="width: 100%; height: auto;">
+            </a>
             <nav id="header">
                 <div class="navbar-header">
                     <a href="<?php echo BASE_PATH; ?>/index.php" target="_top">HOME</a>&emsp;
@@ -172,7 +177,7 @@ if (isset($_GET['id'])) {
         <footer>
             <div class="navbar-footer">
                 Fanzine CMS © 2023-<?php echo date('Y');?> <a href="mailto:gurpzine@gurpzine.com.br">Daniel "Nerun" Rodrigues</a>.
-                Some rights reserved.<br />
+                Some rights reserved.<br>
                 <a href="https://github.com/nerun/fanzine-cms">Fanzine CMS</a> powered by <a href="https://www.php.net">PHP</a>
                 and <a href="https://html.spec.whatwg.org/multipage">HTML5</a>.
             </div>

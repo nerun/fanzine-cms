@@ -85,7 +85,7 @@ foreach ($files as $key => $value) {
         echo tab(5) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
         $parts = explode('_', $value);
         echo tab(6) . '<img src="' . BASE_PATH . '/content/' . $parts[0] . '/' . $image .
-            '" width="340" height="170" style="float:right; margin-left:15px; margin-bottom:15px"' .
+            '" alt="Article Thumbnail" width="340" height="170" style="float:right; margin-left:15px; margin-bottom:15px"' .
             ' class="responsive-img">' . "\n";
         echo tab(5) . "</a>\n";
     }
@@ -95,11 +95,9 @@ foreach ($files as $key => $value) {
     
     echo $abstract . "\n";
     
-    echo tab(5) . "<p>\n";
-    echo tab(6) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
-    echo tab(7) . '<img src="' . BASE_PATH . '/assets/img/readmore.webp" height="24" style="vertical-align:top;" />' . "\n";
-    echo tab(6) . "</a>\n";
-    echo tab(5) . "</p>\n";
+    echo tab(5) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
+    echo tab(6) . '<img src="' . BASE_PATH . '/assets/img/readmore.webp" alt="Read More button" height="24" style="vertical-align:top;">' . "\n";
+    echo tab(5) . "</a>\n";
     
     if ($files[$key] != end($files)) {
         echo "\n" . tab(5) . "<hr>\n\n";
@@ -110,8 +108,5 @@ echo tab(4) . "</div>\n";
 
 _browsing($page, $totalPages, 'top');
 
-echo "\n";
-echo tab(4) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
-echo tab(5) . '<a href="#top" target="_top" style="color:none; text-decoration:none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
-echo tab(4) . "</div>\n";
+backButton(4,5);
 ?>

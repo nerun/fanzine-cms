@@ -60,7 +60,7 @@ if ( !empty($body) ) {
     echo tab(3) . '<h1 style="margin-bottom:0; text-align:center;">' . $article . "</h1>\n";
     echo tab(3) . '<p style="margin-top:0; font-size:80%; text-align:center;">' . '&#128197; ' .
         $date . '&emsp;&#128100; ' . $author . "</p>\n";
-    echo tab(3) . "<br />\n";
+    echo tab(3) . "<br>\n";
     echo tab(3) . '<div id="columns" class="columns" style="column-count:' . $columns . ';">' . "\n";
     
     if ( mb_strtolower(substr($page_file, -2)) == 'md' ) {
@@ -72,10 +72,7 @@ if ( !empty($body) ) {
     echo $body;
     echo tab(3) . "</div>\n";
 
-    echo "\n";
-    echo tab(3) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
-    echo tab(4) . '<a href="#top" target="_top" style="color:none; text-decoration:none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
-    echo tab(3) . "</div>\n";
+    backButton(3,4);
 } else {
     include('404.php');
 }
