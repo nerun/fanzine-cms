@@ -50,6 +50,10 @@
     text-align: left;
 }
 
+.navcolumn h3 {
+    margin: 0;
+}
+
 /* Navigation links */
 .navcolumn a {
     color: #2467ab;

@@ -154,7 +154,7 @@ if (isset($_GET['id'])) {
 
     echo tab(2) . '<div class="main-container">' . "\n";
     echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
-    echo tab(4) . '<h3 style="margin-top:0; margin-bottom:0;">Tags</h3>' . "\n";
+    echo tab(4) . '<h3>Whatever you want</h3>' . "\n";
     echo tab(4) . '<p><a href="'.BASE_PATH.'/content/none.html" target="_top">"Page not found" sample</a></p>' . "\n";
     echo tab(3) . "</div>\n";
     echo tab(3) . '<div id="content" class="content">' . "\n";
