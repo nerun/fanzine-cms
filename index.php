@@ -70,6 +70,20 @@ function tab($times){
     return str_repeat("\t", $times);
 }
 
+// Generates tabulation in file
+function include_with_tab($filename, $tabs = 1) {
+    if (!file_exists($filename)) {
+        return '';
+    }
+
+    $lines = file($filename); // Lê o arquivo como array de linhas
+    $tabbed = array_map(function($line) use ($tabs) {
+        return tab($tabs) . $line;
+    }, $lines);
+
+    return implode('', $tabbed);
+}
+
 // Generates back to top button
 function backButton($tab1, $tab2){
     echo "\n";
@@ -128,7 +142,7 @@ function sanitizePageFile($input) {
                     <!-- Dropdown for smaller screens -->
                     <div id="dropdown-menu">&#9776;</div>
                     <div id="dropdown-menu-content">
-<?php file_exists('navcolumn.php') && include 'navcolumn.php'; ?>
+<?php echo include_with_tab('navcolumn.php', 6); ?>
                     </div>
                 </div>
             </nav>
@@ -154,7 +168,7 @@ if (isset($_GET['id'])) {
     echo tab(2) . '<div class="main-container">' . "\n";
     echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
 
-    file_exists('navcolumn.php') && include 'navcolumn.php';
+    echo include_with_tab('navcolumn.php', 4);
 
     echo tab(3) . "</div>\n";
     echo tab(3) . '<div id="content" class="content">' . "\n";
