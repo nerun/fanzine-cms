@@ -253,7 +253,9 @@ pre {
     #dropdown-menu-content h3 {
         margin: 0;
     }
+    
     #dropdown-menu-content p {
+        text-align: left;
         margin-top: 0.5em;
         margin-bottom: 0.5em;
     }

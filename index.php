@@ -128,7 +128,7 @@ function sanitizePageFile($input) {
                     <!-- Dropdown for smaller screens -->
                     <div id="dropdown-menu">&#9776;</div>
                     <div id="dropdown-menu-content">
-                        <?php file_exists('navcolumn.php') && include 'navcolumn.php'; ?>
+<?php file_exists('navcolumn.php') && include 'navcolumn.php'; ?>
                     </div>
                 </div>
             </nav>
