@@ -54,6 +54,11 @@
     margin: 0;
 }
 
+.navcolumn p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 /* Navigation links */
 .navcolumn a {
     color: #2467ab;
@@ -237,11 +242,20 @@ pre {
         position: absolute;
         top: 65px;
         right: 10px;
+        padding: 10px;
         background-color: #27272a;
         border: 1px solid #023c7f;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);
         border-radius: 5px;
         z-index: 1000;
+    }
+    
+    #dropdown-menu-content h3 {
+        margin: 0;
+    }
+    #dropdown-menu-content p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
     }
 
     /* Dropdown links */

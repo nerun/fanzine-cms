@@ -128,8 +128,7 @@ function sanitizePageFile($input) {
                     <!-- Dropdown for smaller screens -->
                     <div id="dropdown-menu">&#9776;</div>
                     <div id="dropdown-menu-content">
-                        <a href="<?php echo BASE_PATH; ?>/content/none.html" target="_top">"Page not found" sample</a>
-                        <!-- Add other menu items as needed -->
+                        <?php file_exists('navcolumn.php') && include 'navcolumn.php'; ?>
                     </div>
                 </div>
             </nav>
@@ -154,8 +153,9 @@ if (isset($_GET['id'])) {
 
     echo tab(2) . '<div class="main-container">' . "\n";
     echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
-    echo tab(4) . '<h3>Whatever you want</h3>' . "\n";
-    echo tab(4) . '<p><a href="'.BASE_PATH.'/content/none.html" target="_top">"Page not found" sample</a></p>' . "\n";
+
+    file_exists('navcolumn.php') && include 'navcolumn.php';
+
     echo tab(3) . "</div>\n";
     echo tab(3) . '<div id="content" class="content">' . "\n";
 
