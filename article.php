@@ -64,7 +64,31 @@ if ( !empty($body) ) {
     echo tab(3) . '<div id="columns" class="columns" style="column-count:' . $columns . ';">' . "\n";
     
     if ( mb_strtolower(substr($page_file, -2)) == 'md' ) {
-        $body = $Parsedown->text($body) . "\n";
+        $body = $Parsedown->text($body);
+        // Add class="responsive-img" to <img> tags
+        $body = preg_replace_callback(
+            '/<img\s+([^>]*?)\/?>/i',
+            function ($matches) {
+                $attrs = $matches[1];
+
+                if (preg_match('/class=["\'].*\bresponsive-img\b.*["\']/', $attrs)) {
+                    return "<img $attrs />";
+                }
+
+                if (preg_match('/class=(["\'])(.*?)\1/', $attrs, $classMatch)) {
+                    $quote = $classMatch[1];
+                    $classes = $classMatch[2];
+                    $newClass = 'class=' . $quote . 'responsive-img ' . $classes . $quote;
+                    $attrs = str_replace($classMatch[0], $newClass, $attrs);
+                } else {
+                    $attrs .= ' class="responsive-img"';
+                }
+
+                return "<img $attrs />";
+            },
+            $body
+        );
+        $body .= "\n";
     }
     
     $body = addTabsOutsidePre($body, 4);
