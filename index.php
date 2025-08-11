@@ -124,7 +124,7 @@ function sanitizePageFile($input) {
         <meta name="robots" content="index,follow">
         <meta name="rating" content="general">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="<?php echo BASE_PATH; ?>/assets/css/style.css">
+        <link rel="stylesheet" href="<?php echo BASE_PATH; ?>/assets/css/style.css">
         <link rel="shortcut icon" href="<?php echo BASE_PATH; ?>/assets/img/favicon.ico" type="image/x-icon">
         <!-- <base target="_blank" rel="noreferrer noopener"> -->
     </head>
