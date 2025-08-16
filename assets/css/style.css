@@ -175,6 +175,31 @@ pre {
     overflow-x: auto;
 }
 
+kbd {
+    padding: 1px 2px 0;
+    border-radius: 3px;
+    border: 1px solid #666;
+    border-color: grey;
+    background-color: #f0efdd;
+    font-family: monospace;
+    font-size: 85%;
+    box-shadow: 2px 2px grey;
+}
+
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    color: #000000;
+    border-left: 5px solid var(--border-color);
+    border-radius: 0 4px 4px 0;
+    background: var(--bg-color);
+    text-align: left;
+}
+
+.alert-tip { --border-color: #ffd700; --bg-color: #ffffce; }
+.alert-note { --border-color: #2196F3; --bg-color: #f0f8ff; }
+.alert-warning { --border-color: #FF9800; --bg-color: #fff3e0; }
+
 .responsive-img {
     max-width: 100%;
 }

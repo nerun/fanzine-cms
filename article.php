@@ -90,7 +90,47 @@ if ( !empty($body) ) {
         );
         $body .= "\n";
     }
-    
+
+    // Convert blockquotes of type [!Note], [!Tip], [!Warning]
+    $body = preg_replace_callback(
+        '/<blockquote>\s*<p>\[!(\w+)\]\s*(.*?)<\/p>(.*?)<\/blockquote>/is',
+        function ($matches) {
+            $type = strtolower($matches[1]);
+            $content = $matches[2] . $matches[3]; // join first line + rest
+
+            $map = [
+                'note' => [
+                    'class' => 'alert alert-note',
+                    'icon'  => '&#x1F4DD;',   // 📝
+                    'label' => 'Note'
+                ],
+                'tip' => [
+                    'class' => 'alert alert-tip',
+                    'icon'  => '&#x1F4A1;',   // 💡
+                    'label' => 'Tip'
+                ],
+                'warning' => [
+                    'class' => 'alert alert-warning',
+                    'icon'  => '&#x26A0;&#xFE0F;', // ⚠️
+                    'label' => 'Warning'
+                ],
+            ];
+
+            if (!isset($map[$type])) {
+                return $matches[0]; // If you didn't recognize it, leave it as it was.
+            }
+
+            $icon  = $map[$type]['icon'];
+            $label = $map[$type]['label'];
+            $class = $map[$type]['class'];
+
+            return '<div class="' . $class . '">' . "\n" .
+                   $icon . ' <strong>' . $label . ':</strong> ' . $content .
+                   "\n" . '</div>';
+        },
+        $body
+    );
+
     $body = addTabsOutsidePre($body, 4);
     
     echo $body;
