@@ -175,6 +175,10 @@ pre {
     overflow-x: auto;
 }
 
+.responsive-img {
+    max-width: 100%;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1440px) {
     .index {

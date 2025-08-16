@@ -50,8 +50,8 @@ if ( !empty($body) ) {
         else {
             $postFolder = '/';
         }
-        echo tab(3) . '<img src="' . BASE_PATH . $postFolder . $image . '" width="640"' .
-            ' height="360" style="margin: 1px auto 1px; display: block;"' .
+        echo tab(3) . '<img src="' . BASE_PATH . $postFolder . $image . '" alt="Article Thumbnail"' .
+            ' width="640" height="360" style="margin: 1px auto 1px; display: block;"' .
             ' class="responsive-img">' . "\n";
         echo tab(3) . '<hr width="75%">' . "\n";
     }
@@ -72,7 +72,7 @@ if ( !empty($body) ) {
                 $attrs = $matches[1];
 
                 if (preg_match('/class=["\'].*\bresponsive-img\b.*["\']/', $attrs)) {
-                    return "<img $attrs />";
+                    return "<img $attrs>";
                 }
 
                 if (preg_match('/class=(["\'])(.*?)\1/', $attrs, $classMatch)) {
@@ -84,7 +84,7 @@ if ( !empty($body) ) {
                     $attrs .= ' class="responsive-img"';
                 }
 
-                return "<img $attrs />";
+                return "<img $attrs>";
             },
             $body
         );
