@@ -65,5 +65,8 @@ define('ARTICLES_PER_PAGE', 5);
  ******************************************************************************/
 define('PREV', 'prev');
 define('NEXT', 'next');
+define('NOTE', 'Note');
+define('TIP', 'Tip');
+define('WARNING', 'Warning');
 
 ?>

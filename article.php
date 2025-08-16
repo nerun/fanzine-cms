@@ -102,17 +102,17 @@ if ( !empty($body) ) {
                 'note' => [
                     'class' => 'alert alert-note',
                     'icon'  => '&#x1F4DD;',   // 📝
-                    'label' => 'Note'
+                    'label' => NOTE
                 ],
                 'tip' => [
                     'class' => 'alert alert-tip',
                     'icon'  => '&#x1F4A1;',   // 💡
-                    'label' => 'Tip'
+                    'label' => TIP
                 ],
                 'warning' => [
                     'class' => 'alert alert-warning',
                     'icon'  => '&#x26A0;&#xFE0F;', // ⚠️
-                    'label' => 'Warning'
+                    'label' => WARNING
                 ],
             ];
 
