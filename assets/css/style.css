@@ -220,20 +220,9 @@ kbd {
     }
 }
 
-@media (max-width: 1050px) {
-    .responsive-img {
-        width: 80%;
-        height: auto;
-    }
-}
-
 @media (max-width: 768px) {
     .index {
         margin: 0 5%;
-    }
-    .responsive-img {
-        width: 100%;
-        height: auto;
     }
 }
 
