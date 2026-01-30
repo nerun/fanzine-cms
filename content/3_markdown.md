@@ -9,35 +9,35 @@ Editors working on **Fanzine-CMS** can improve readability by using GitHub’s c
 ### Syntax examples
 
 ```markdown
-> [!Note]
+> [!note]
 > This is a note.
 ```
 
-> [!Note]
+> [!note]
 > This is a note.
 
 ```
-> [!Tip]
+> [!tip]
 > This is a tip.
 ```
 
-> [!Tip]
+> [!tip]
 > This is a tip.
 
 ```
-> [!Warning]
+> [!warning]
 > This is a warning.
 ```
 
-> [!Warning]
+> [!warning]
 > This is a warning.
 
 Callout styles ensure that critical details stand out, making Fanzine-CMS documentation clearer and more user-friendly.
 
-> [!Warning]
-> Remember, the right is `[!Warning]` not `[!WARNING]` nor `[!warning]`.
+> [!warning]
+> Remember, callout styles are not case-sensitive: `[!Warning]`, `[!WARNING]`, and `[!wArNiNg]` are all correct.
 
-The words Note, Tip and Warning are translatable in `config.php`, but you will always use `[!Note]`, `[!Tip]` and `[!Warning]` as markup.
+The words Note, Tip and Warning are translatable in `config.php`, but you will always use `[!note]`, `[!tip]` and `[!warning]` as markup.
 
 ---
 
