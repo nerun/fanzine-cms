@@ -79,12 +79,17 @@ function include_with_tab($filename, $tabs = 1) {
         return '';
     }
 
-    $lines = file($filename); // Lê o arquivo como array de linhas
+    ob_start();
+    include $filename;
+    $output = ob_get_clean();
+
+    $lines = explode("\n", $output);
+
     $tabbed = array_map(function($line) use ($tabs) {
         return tab($tabs) . $line;
     }, $lines);
 
-    return implode('', $tabbed);
+    return implode("\n", $tabbed);
 }
 
 // Generates back to top button
