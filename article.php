@@ -34,11 +34,6 @@ if (is_file($base . '.yaml')) {
     $yaml = null;
 }
 
-if ($yaml === null) {
-    include('404.php');
-    exit;
-}
-
 $metadata = file_get_contents($yaml);
 
 if ( !empty($body) ) {
