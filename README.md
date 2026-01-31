@@ -61,21 +61,42 @@ In fact, this very README is written in Markdown.
 
 ## No Database Required
 
-No database needed! Just place your images in the `img/` folder and your articles in `articles/`. You can organize articles by year or any other structure. Just ensure links point to the correct paths. See examples below.
+No database is needed! Just place site images in the `assets/img/` folder and your articles in `content/`.
+
+If an article has associated images, the engine will look for a subfolder inside `content` **only to resolve the article thumbnail**. This subfolder must follow a strict naming rule based on the article filename.
+
+The article filename must use an underscore (`_`) as a delimiter. Everything **before** the underscore defines the image folder name.
+
+Example:
+
+* Article file: `xyz_artigo.md`
+* Thumbnail folder: `content/xyz/`
+
+If this folder exists, the engine will attempt to load the article thumbnail from it. If it does not exist, no thumbnail is displayed.
+
+All other images used within the article body must also be stored in this same folder, but **they are not automatically resolved**. The author must reference them explicitly in the article content, for example:
+
+`xyz/image.jpg`
+
+Articles can be organized by year or any other structure you prefer, as long as links point to the correct paths.
 
 ## CSS Customization
 
-There’s only one CSS file: `style.css`. It may not be beginner-friendly, but if you’re looking to learn or tweak it, [CSS Tutorial](https://www.w3schools.com/css) is a good place to start — that’s where I learned a lot. Also, check your styles using [Jigsaw](https://jigsaw.w3.org/css-validator), a CSS validation tool.
+There’s only one CSS file: `style.css`. It may not be beginner-friendly, but if you want to learn or tweak it, the [CSS Tutorial](https://www.w3schools.com/css) is a good place to start — it’s where I learned a lot.
+
+You can also validate your styles using [Jigsaw](https://jigsaw.w3.org/css-validator), a CSS validation tool.
 
 ## Engine
 
-All PHP logic runs through `index.php`: a short, well-commented file that's easy to follow if you know the basics of HTML and PHP.
+All PHP logic runs through `index.php`: a short, well-commented file that’s easy to follow if you know the basics of HTML and PHP.
 
-A complementary file, `main.php`, builds the homepage by displaying "abstracts" for all articles, grouped in pages of 5 (modifiable at the top of the file: `$articlesPerPage = 5;`). Readers can click "read more" or the article title to view the full content. The script scans the `articles` folder and generates a preview for each file using the `<!-- more -->` tag. If the tag is missing, it defaults to the first 9 lines of HTML (not text).
+A complementary file, `main.php`, builds the homepage by displaying article “abstracts”, grouped into pages of five (modifiable at the top of the file via `$articlesPerPage = 5;`). Readers can click **Read more**, the article title, or the article thumbnail to view the full content.
 
-Another file, `articles.php`, handles formatting and display of the full article.
+The script scans the `content` folder and generates a preview for each article using the `<!-- more -->` tag as a delimiter. If the tag is missing, it defaults to the first nine lines of HTML (not plain text).
 
-The entire page is rebuilt on each load — no frames (e.g., `frameset`, `frame`) as in HTML4. Still, it's faster than a traditional CMS thanks to its lightweight approach: no heavy scripts, no JavaScript, and no database. It’s also efficient: you only write repeated sections once (e.g., `<meta>`, `<header>`, `<footer>`).
+Another file, `article.php`, handles formatting and display of the full article.
+
+The entire page is rebuilt on each load — no frames (such as `frameset` or `frame`, from HTML4). Even so, it’s faster than a traditional CMS thanks to its lightweight approach: no heavy scripts, no JavaScript, and no database. It’s also efficient: repeated sections (like `<meta>`, `<header>`, and `<footer>`) are written only once.
 
 ### Hyperlinks
 
@@ -117,7 +138,7 @@ Will resolve as:
 https://site.com/articles/2023/12/page.html
 ```
 
-Use root-relative URLs (e.g., `/articles`, not `articles`) for all internal links — including images, stylesheets, etc.
+Use root-relative URLs (e.g., `/content`, not `content`) for all internal links — including images, stylesheets, etc.
 
 #### Enabling mod\_rewrite in Apache2
 
