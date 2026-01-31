@@ -24,17 +24,33 @@ function addTabsOutsidePre($body, $tabs) {
 $body = file_get_contents($page_file);
 
 // Extract metadata from yaml
-$base = preg_replace('/\.[^.]+$/', '', $page_file);
+$filename = pathinfo($page_file, PATHINFO_FILENAME);
+$dirname  = dirname($page_file);
 
-if (is_file($base . '.yaml')) {
-    $yaml = $base . '.yaml';
-} elseif (is_file($base . '.yml')) {
-    $yaml = $base . '.yml';
+// Special cases: README.* e LICENSE.*
+if (strcasecmp($filename, 'README') === 0) {
+    $yaml = $dirname . '/metadata-readme.yml';
+} elseif (strcasecmp($filename, 'LICENSE') === 0) {
+    $yaml = $dirname . '/metadata-license.yml';
 } else {
-    $yaml = null;
+    // Normal cases: article.yaml or article.yml
+    $base = preg_replace('/\.[^.]+$/', '', $page_file);
+
+    if (is_file($base . '.yaml')) {
+        $yaml = $base . '.yaml';
+    } elseif (is_file($base . '.yml')) {
+        $yaml = $base . '.yml';
+    } else {
+        $yaml = null;
+    }
 }
 
-$metadata = file_get_contents($yaml);
+if ($yaml !== null && is_file($yaml)) {
+    $metadata = file_get_contents($yaml);
+} else {
+    $metadata = null;
+}
+
 
 if ( !empty($body) ) {
     // Process extracted metadata
