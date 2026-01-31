@@ -28,13 +28,8 @@ $yaml = preg_replace('/\.[^.]+$/', '', $page_file) . '.yaml';
 $metadata = file_get_contents($yaml);
 
 if ( !empty($body) ) {
-    $parameters = _getParams($metadata, $yaml);
-    $article = $parameters[0];
-    $author  = $parameters[1];
-    $columns = $parameters[2];
-    $date    = $parameters[3];
-    $email   = $parameters[4];
-    $image   = $parameters[5];
+    // Process extracted metadata
+    [$article, $author, $columns, $date, $email, $image] = _getParams($metadata, $yaml);
 
     // If email is not missing, link it to the author
     if ( !empty($email) ){
