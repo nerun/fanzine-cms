@@ -47,7 +47,16 @@ foreach ($files as $key => $value) {
     $abstract = file_get_contents($path);
 
     // Extract metadata from yaml
-    $yaml = preg_replace('/\.[^.]+$/', '', $path) . '.yaml';
+    $base = preg_replace('/\.[^.]+$/', '', $path);
+
+    if (is_file($base . '.yaml')) {
+        $yaml = $base . '.yaml';
+    } elseif (is_file($base . '.yml')) {
+        $yaml = $base . '.yml';
+    } else {
+        $yaml = null;
+    }
+
     $metadata = file_get_contents($yaml);
 
     // Check if the file is Markdown by extension

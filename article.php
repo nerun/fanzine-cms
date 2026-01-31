@@ -24,7 +24,21 @@ function addTabsOutsidePre($body, $tabs) {
 $body = file_get_contents($page_file);
 
 // Extract metadata from yaml
-$yaml = preg_replace('/\.[^.]+$/', '', $page_file) . '.yaml';
+$base = preg_replace('/\.[^.]+$/', '', $page_file);
+
+if (is_file($base . '.yaml')) {
+    $yaml = $base . '.yaml';
+} elseif (is_file($base . '.yml')) {
+    $yaml = $base . '.yml';
+} else {
+    $yaml = null;
+}
+
+if ($yaml === null) {
+    include('404.php');
+    exit;
+}
+
 $metadata = file_get_contents($yaml);
 
 if ( !empty($body) ) {
