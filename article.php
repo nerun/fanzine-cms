@@ -63,6 +63,12 @@ if ( !empty($body) ) {
 
     // If featured image is not missing and it is not set to 'none', insert it
     if ( !empty($image) && mb_strtolower($image) != "none" ){
+
+        // Remove leading slash, if present
+        if (strpos($image, '/') === 0) {
+            $image = ltrim($image, '/');
+        }
+
         $parts = explode('_', $page_file);
         if (ctype_digit(substr($parts[0], -1))) {
             $postFolder = '/' . $parts[0] . '/';
@@ -70,6 +76,7 @@ if ( !empty($body) ) {
         else {
             $postFolder = '/';
         }
+
         echo tab(3) . '<img src="' . BASE_PATH . $postFolder . $image . '" alt="Article Thumbnail"' .
             ' width="640" height="360" style="margin: 1px auto 1px; display: block;"' .
             ' class="responsive-img">' . "\n";
