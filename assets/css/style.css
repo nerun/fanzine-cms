@@ -243,11 +243,11 @@ kbd {
     #dropdown-menu {
         display: block;
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 7px;
+        right: 7px;
         background-color: #27272a;
         border: 1px solid #023c7f;
-        padding: 10px;
+        padding: 6px 9px 6px 9px;
         border-radius: 5px;
         color: white;
         cursor: pointer;
@@ -258,8 +258,8 @@ kbd {
     #dropdown-menu-content {
         display: none;
         position: absolute;
-        top: 65px;
-        right: 10px;
+        top: 55px;
+        right: 8px;
         padding: 10px;
         background-color: #27272a;
         border: 1px solid #023c7f;
