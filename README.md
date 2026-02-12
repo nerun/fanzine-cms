@@ -15,7 +15,7 @@ Unixsheikh.com:
 
 # What is the solution then?
 
-My answer to this call is **Fanzine CMS**: a homegrown Content Management System (CMS) built almost entirely in **PHP** and **HTML5**, with only a single JavaScript file—for the hamburger menu. It features **responsive web design** and a look inspired by the default theme of a well-known CMS.
+My answer to this call is **Fanzine CMS**: a homegrown Content Management System (CMS) built entirely and only in **PHP** and **HTML5**. It features **responsive web design** and a look inspired by the default theme of a well-known CMS.
 
 **Fanzine CMS** follows a straightforward layout: banner, navigation bar, sidebar, main content area, and footer. It supports featured images that can be easily toggled on or off by the user. To streamline content creation and reduce the need for HTML knowledge, each article is paired with a `.yaml` file containing metadata used to configure key elements of the page.
 

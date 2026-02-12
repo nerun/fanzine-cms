@@ -77,7 +77,7 @@
 /* Index page */
 .index {
     background-attachment: fixed;
-    background-image: url('../img/bg_lipsum.gif');
+    background-image: url('/assets/img/bg_lipsum.gif');
     display: block;
     font-family: "Liberation Serif", "Times New Roman", Garamond, serif, Verdana, sans-serif;
     font-size: 14pt;
@@ -232,76 +232,36 @@ kbd {
     }
 }
 
-/* Dropdown menu (hamburger) below 1050px */
+/* Mobile layout adjustments below 1050px */
 @media screen and (max-width: 1050px) {
-    /* Hide sidebar */
+    /* Hide fixed sidebar */
     #navcolumn {
         display: none;
     }
 
-    /* Hamburger button */
-    #dropdown-menu {
+    /* Hamburger toggle button */
+    #hamburger-toggle {
         display: block;
         position: absolute;
         top: 7px;
         right: 7px;
         background-color: #27272a;
         border: 1px solid #023c7f;
-        padding: 6px 9px 6px 9px;
+        padding: 6px 9px;
         border-radius: 5px;
         color: white;
-        cursor: pointer;
         font-size: 18pt;
-    }
-
-    /* Dropdown content hidden by default */
-    #dropdown-menu-content {
-        display: none;
-        position: absolute;
-        top: 55px;
-        right: 8px;
-        padding: 10px;
-        background-color: #27272a;
-        border: 1px solid #023c7f;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        border-radius: 5px;
-        z-index: 1000;
-    }
-    
-    #dropdown-menu-content h3 {
-        margin: 0;
-    }
-    
-    #dropdown-menu-content p {
-        text-align: left;
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-    }
-
-    /* Dropdown links */
-    #dropdown-menu-content a {
-        color: #2467ab;
         text-decoration: none;
     }
 
-    #dropdown-menu-content a:hover {
+    #hamburger-toggle:hover {
         background-color: #023c7f;
-    }
-
-    /* Show dropdown content when active */
-    #dropdown-menu.active {
-        display: block;
-    }
-    #dropdown-menu-content.active {
-        display: block;
     }
 }
 
 /* Hide hamburger menu above 1050px */
 @media screen and (min-width: 1051px) {
-    #dropdown-menu,
-    #dropdown-menu-content {
+    #hamburger-toggle {
         display: none;
     }
 }
-

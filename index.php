@@ -24,6 +24,15 @@ if (file_exists('config.php')) {
     define('WARNING', 'Warning');
 }
 
+// === Menu state ===
+session_start();
+
+if (!isset($_SESSION['menuOpen'])) {
+    $_SESSION['menuOpen'] = false;
+}
+
+$menuOpen = $_SESSION['menuOpen'];
+
 // === Security headers ===
 header("Content-Security-Policy: default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';");
 header("X-Content-Type-Options: nosniff");
@@ -148,10 +157,12 @@ function sanitizePageFile($input) {
                     <a href="<?php echo BASE_PATH; ?>/README.md" target="_top">README</a>&emsp;
                     <a href="https://github.com/nerun/fanzine-cms" target="_blank">SOURCE</a>&emsp;
                     <!-- Dropdown for smaller screens -->
-                    <div id="dropdown-menu">&#9776;</div>
-                    <div id="dropdown-menu-content">
-<?php echo include_with_tab('navcolumn.php', 6); ?>
-                    </div>
+                    <a
+                        id="hamburger-toggle"
+                        href="<?php echo BASE_PATH; ?>/toggle-menu.php"
+                    >
+                        <?php echo $menuOpen ? '&#10799;' : '&#9776;'; ?>
+                    </a>
                 </div>
             </nav>
         </header>
@@ -161,28 +172,42 @@ function sanitizePageFile($input) {
 
 $page_file = null;
 
+/* Top menu (mobile toggle) */
+if ($menuOpen) {
+    echo tab(2) . '<div class="content">' . "\n";
+    echo include_with_tab('navcolumn.php', 3);
+    echo tab(2) . "</div>\n";
+}
+
+/* Article page */
 if (isset($_GET['id'])) {
     $page_file = sanitizePageFile($_GET['id']);
+
     echo tab(2) . '<div id="content" class="content">' . "\n";
+
     if ($page_file && file_exists($page_file)) {
-        include('article.php');
+        include 'article.php';
     } else {
-        include('404.php');
+        include '404.php';
     }
+
     echo tab(2) . "</div>\n";
+
+/* Main page */
 } else {
-    $page_file = 'main.php';
-
     echo tab(2) . '<div class="main-container">' . "\n";
-    echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
 
-    echo include_with_tab('navcolumn.php', 4);
+    /* Desktop sidebar only if menu is NOT open */
+    if (!$menuOpen) {
+        echo tab(3) . '<div id="navcolumn" class="navcolumn">' . "\n";
+        echo include_with_tab('navcolumn.php', 4);
+        echo tab(3) . "</div>\n";
+    }
 
-    echo tab(3) . "</div>\n";
     echo tab(3) . '<div id="content" class="content">' . "\n";
 
-    if (file_exists($page_file)) {
-        include($page_file);
+    if (file_exists('main.php')) {
+        include 'main.php';
     } else {
         header("HTTP/1.1 500 Internal Server Error");
         echo tab(4) . '<div class="error-message">' . "\n";
@@ -196,6 +221,7 @@ if (isset($_GET['id'])) {
     echo tab(2) . "</div>\n";
 }
 ?>
+
         <footer>
             <div class="navbar-footer">
                 Fanzine CMS © 2023-<?php echo date('Y');?> <a href="mailto:gurpzine@gurpzine.com.br">Daniel "Nerun" Rodrigues</a>.
@@ -204,6 +230,5 @@ if (isset($_GET['id'])) {
                 and <a href="https://html.spec.whatwg.org/multipage">HTML5</a>.
             </div>
         </footer>
-        <script src="<?php echo BASE_PATH; ?>/assets/js/menu.js"></script>
     </body>
 </html>
