@@ -94,7 +94,7 @@ foreach ($files as $key => $value) {
         echo tab(5) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
         $parts = explode('_', $value);
         echo tab(6) . '<img src="' . BASE_PATH . '/content/' . $parts[0] . '/' . $image .
-            '" alt="Article Thumbnail" width="340" height="170" style="float:right; margin-left:15px; margin-bottom:15px"' .
+            '" alt="Article Thumbnail" width="340" height="auto" style="float:right; margin-left:15px; margin-bottom:15px"' .
             ' class="responsive-img">' . "\n";
         echo tab(5) . "</a>\n";
     }

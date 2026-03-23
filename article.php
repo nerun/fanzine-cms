@@ -78,7 +78,7 @@ if ( !empty($body) ) {
         }
 
         echo tab(3) . '<img src="' . BASE_PATH . $postFolder . $image . '" alt="Article Thumbnail"' .
-            ' width="640" height="360" style="margin: 1px auto 1px; display: block;"' .
+            ' width="640" height="auto" style="margin: 1px auto 1px; display: block;"' .
             ' class="responsive-img">' . "\n";
         echo tab(3) . '<hr width="75%">' . "\n";
     }
