@@ -158,6 +158,10 @@ if ( !empty($body) ) {
         $body
     );
 
+    // Responsiveness: scrollable tables when needed
+    $body = preg_replace('/<table([^>]*)>/', "<div class=\"table-container\">\n<table$1>", $body);
+    $body = preg_replace('/<\/table>/', "</table>\n</div>", $body);
+
     $body = addTabsOutsidePre($body, 4);
     
     echo $body;

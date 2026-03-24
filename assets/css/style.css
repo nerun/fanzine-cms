@@ -206,6 +206,19 @@ kbd {
     aspect-ratio: 16 / 9;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 4px 12px;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1440px) {
     .index {
