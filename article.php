@@ -1,7 +1,9 @@
 <?php
-function addTabsOutsidePre($body, $tabs) {
+
+function addTabsOutsidePre($body, $tabs)
+{
     $preBlocks = [];
-    
+
     // Temporarily remove content inside <pre> tags by replacing it with a placeholder
     $body = preg_replace_callback('/<pre\b([^>]*)>(.*?)<\/pre>/is', function ($matches) use (&$preBlocks) {
         $placeholder = "__PRE_BLOCK_" . count($preBlocks) . "__";
@@ -52,17 +54,17 @@ if ($yaml !== null && is_file($yaml)) {
 }
 
 
-if ( !empty($body) ) {
+if (!empty($body)) {
     // Process extracted metadata
     [$article, $author, $columns, $date, $email, $image] = _getParams($metadata, $yaml);
 
     // If email is not missing, link it to the author
-    if ( !empty($email) ){
+    if (!empty($email)) {
         $author = '<a href="mailto:'.$email.'">'.$author.'</a>';
     }
 
     // If featured image is not missing and it is not set to 'none', insert it
-    if ( !empty($image) && mb_strtolower($image) != "none" ){
+    if (!empty($image) && mb_strtolower($image) != "none") {
 
         // Remove leading slash, if present
         if (strpos($image, '/') === 0) {
@@ -72,8 +74,7 @@ if ( !empty($body) ) {
         $parts = explode('_', $page_file);
         if (ctype_digit(substr($parts[0], -1))) {
             $postFolder = '/' . $parts[0] . '/';
-        }
-        else {
+        } else {
             $postFolder = '/';
         }
 
@@ -89,8 +90,8 @@ if ( !empty($body) ) {
         $date . '&emsp;&#128100; ' . $author . "</p>\n";
     echo tab(3) . "<br>\n";
     echo tab(3) . '<div id="columns" class="columns" style="column-count:' . $columns . ';">' . "\n";
-    
-    if ( mb_strtolower(substr($page_file, -2)) == 'md' ) {
+
+    if (mb_strtolower(substr($page_file, -2)) == 'md') {
         $body = $Parsedown->text($body);
         // Add class="responsive-img" to <img> tags
         $body = preg_replace_callback(
@@ -163,12 +164,11 @@ if ( !empty($body) ) {
     $body = preg_replace('/<\/table>/', "</table>\n</div>", $body);
 
     $body = addTabsOutsidePre($body, 4);
-    
+
     echo $body;
     echo tab(3) . "</div>\n";
 
-    backButton(3,4);
+    backButton(3, 4);
 } else {
     include('404.php');
 }
-?>
