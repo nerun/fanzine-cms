@@ -1,0 +1,25 @@
+# Dependencies (Composer)
+vendor/
+
+# Composer lock (library-style project)
+composer.lock
+
+# IDEs / Editors
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+*.tmp
+*.cache
+
+# PHPUnit (if you ever use it)
+.phpunit.result.cache
+
+# PHP CS Fixer
+# https://cs.symfony.com/doc/config.html
+php-cs-fixer-v3.phar

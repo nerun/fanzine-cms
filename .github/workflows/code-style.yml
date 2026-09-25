@@ -1,0 +1,43 @@
+name: PHP Code Style
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  code-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: true
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: php-cs-fixer:3
+
+      - name: Fix PHP code style
+        run: >-
+          php-cs-fixer fix
+          --config=.php-cs-fixer.dist.php
+          --using-cache=no
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Fix PHP code style
+          title: Fix PHP code style
+          body: |
+            Update PHP formatting using PHP CS Fixer.
+          branch: automated/php-code-style
+          delete-branch: true
