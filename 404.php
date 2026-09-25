@@ -1,4 +1,5 @@
 <?php
+
 echo tab(3) . '<h1 style="text-align:center; line-height:5px;">Oops!</h1>' . "\n";
 
 echo tab(3) . '<h2 style="text-align:center;">Error 404. Page not found.</h2>' . "\n";
@@ -15,4 +16,3 @@ echo tab(4) . '<p style="text-align:right;">&mdash; Wikipedia: <a href="https://
 
 echo tab(4) . "<hr>\n";
 echo tab(3) . "</blockquote>\n";
-?>

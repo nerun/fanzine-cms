@@ -62,8 +62,9 @@ $Parsedown = new ParsedownExtra();
 // === Auxiliary functions ===
 
 // Extracts metadata from the article
-function _getParams($page, $page_name) {
-    $getVar = function($var, $page, $missing) {
+function _getParams($page, $page_name)
+{
+    $getVar = function ($var, $page, $missing) {
         return preg_match("/$var:(.*)/", substr($page, 0, 250), $matches) ? trim($matches[1]) : $missing;
     };
 
@@ -78,12 +79,14 @@ function _getParams($page, $page_name) {
 }
 
 // Generates tabulation
-function tab($times){
+function tab($times)
+{
     return str_repeat("\t", $times);
 }
 
 // Generates tabulation in file
-function include_with_tab($filename, $tabs = 1) {
+function include_with_tab($filename, $tabs = 1)
+{
     if (!file_exists($filename)) {
         return '';
     }
@@ -94,7 +97,7 @@ function include_with_tab($filename, $tabs = 1) {
 
     $lines = explode("\n", $output);
 
-    $tabbed = array_map(function($line) use ($tabs) {
+    $tabbed = array_map(function ($line) use ($tabs) {
         return tab($tabs) . $line;
     }, $lines);
 
@@ -102,7 +105,8 @@ function include_with_tab($filename, $tabs = 1) {
 }
 
 // Generates back to top button
-function backButton($tab1, $tab2){
+function backButton($tab1, $tab2)
+{
     echo "\n";
     echo tab($tab1) . '<div style="text-align: center; margin-top: 10px;">' . "\n";
     echo tab($tab2) . '<a href="#top" target="_top" style="color: inherit; text-decoration: none"><span style="font-size: 40px;">🔝</span></a>' . "\n";
@@ -110,9 +114,10 @@ function backButton($tab1, $tab2){
 }
 
 // Sanitizes the 'id' parameter
-function sanitizePageFile($input) {
+function sanitizePageFile($input)
+{
     $basename = basename($input); // Protects against path traversal
-    
+
     if (preg_match('/^[a-zA-Z0-9_\-]+\.(php|md|htm|html)$/', $basename)) {
         // Check if it is in /content/
         $pathInContent = "content/" . $basename;
@@ -134,8 +139,10 @@ function sanitizePageFile($input) {
 <html lang="<?php echo LANG;?>">
     <head>
         <title><?php echo TITLE;?></title>
-        <meta name="author" content="© <?php echo date('Y'); echo ' '.AUTHOR;?>">
-        <meta name="copyright" content="© <?php echo date('Y'); echo ' '.COPYRIGHT_HOLDER;?>">
+        <meta name="author" content="© <?php echo date('Y');
+echo ' '.AUTHOR;?>">
+        <meta name="copyright" content="© <?php echo date('Y');
+echo ' '.COPYRIGHT_HOLDER;?>">
         <meta name="description" content="<?php echo DESCRIPTION;?>">
         <meta name="keywords" content="<?php echo KEYWORDS;?>">
         <meta name="robots" content="index,follow">
@@ -193,7 +200,7 @@ if (isset($_GET['id'])) {
 
     echo tab(2) . "</div>\n";
 
-/* Main page */
+    /* Main page */
 } else {
     echo tab(2) . '<div class="main-container">' . "\n";
 

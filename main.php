@@ -1,9 +1,10 @@
 <?php
+
 $files = scandir('content', SCANDIR_SORT_DESCENDING);
 $ignored = array('.', '..');
 $files = array_values(array_diff($files, $ignored));
 
-$files = array_filter($files, function($item) {
+$files = array_filter($files, function ($item) {
     $fullpath = 'content/' . $item;
     return is_file($fullpath) && preg_match('/\.(md|html?|php)$/i', $item);
 });
@@ -18,7 +19,8 @@ $start = ($page - 1) * ARTICLES_PER_PAGE;
 $files = array_slice($files, $start, ARTICLES_PER_PAGE);
 
 // ==== Browsing ====
-function _browsing($page, $totalPages, $position){ // top or bottom
+function _browsing($page, $totalPages, $position) // top or bottom
+{
     if ($totalPages > 1) {
         echo tab(4) . '<div style="text-align: center; margin-' . $position . ': 20px;" class="abstract">' . "\n";
 
@@ -28,7 +30,7 @@ function _browsing($page, $totalPages, $position){ // top or bottom
 
         if ($page > 1 && $page == $totalPages) {
             echo tab(5) . "$prev $pagination\n";
-        } else if ($page == 1 && $page < $totalPages) {
+        } elseif ($page == 1 && $page < $totalPages) {
             echo tab(5) . "$pagination $next\n";
         } else { // ($page > 1 && $page < $totalPages)
             echo tab(5) . $prev . '&nbsp;&nbsp;' . $pagination . '&nbsp;&nbsp;' . $next . "\n";
@@ -78,7 +80,7 @@ foreach ($files as $key => $value) {
         // If <!-- more --> is not found, limit the content to the first 9 lines
         $abstract = implode("\n", array_slice(explode("\n", $abstract), 0, 9));
     }
-    
+
     // Process extracted metadata
     [$article, $author, $columns, $date, $email, $image] = _getParams($metadata, $path);
 
@@ -98,16 +100,16 @@ foreach ($files as $key => $value) {
             ' class="responsive-img">' . "\n";
         echo tab(5) . "</a>\n";
     }
-    
+
     $abstract = preg_replace('/^/m', str_repeat("\t", 5), $abstract);
     $abstract = preg_replace('/^\s*[\r\n]+/m', '', $abstract);
-    
+
     echo $abstract . "\n";
-    
+
     echo tab(5) . '<a href="' . BASE_PATH . '/content/' . $value . '" target="_top">' . "\n";
     echo tab(6) . '<img src="' . BASE_PATH . '/assets/img/readmore.webp" alt="Read More button" height="24" style="vertical-align:top;">' . "\n";
     echo tab(5) . "</a>\n";
-    
+
     if ($files[$key] != end($files)) {
         echo "\n" . tab(5) . "<hr>\n\n";
     }
@@ -117,5 +119,4 @@ echo tab(4) . "</div>\n";
 
 _browsing($page, $totalPages, 'top');
 
-backButton(4,5);
-?>
+backButton(4, 5);
